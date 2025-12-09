@@ -3,303 +3,503 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topkapı Sarayı Dijital Tur | Sanal Sergi</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title id="title-tag">Harem Bölümleri | Topkapı Sarayı</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-/* GENEL AYARLAR */
+/* Ortak CSS */
 :root {
     --primary-color: #5d0f1b; /* Koyu Kırmızı/Bordo */
-    --secondary-color: #c9b07a; /* Altın Sarısı */
-    --background-dark: #f7f7f7; /* YENİ: Çok Açık Gri */
-    --background-light: #ffffff; /* YENİ: Saf Beyaz Zemin */
+    --background-light: #ffffff; /* Saf Beyaz */
+    --secondary-bg: #f7f7f7; /* Açık Gri */
 }
 * { box-sizing: border-box; }
-body, html {
+body {
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    height: 100%;
-    font-family: 'Poppins', Arial, sans-serif;
-    overflow-x: hidden;
+    background-color: var(--background-light);
+    color: #333;
+    line-height: 1.7;
 }
 
-/* HOŞ GELDİN EKRANI - Değişmedi */
-#welcome-screen {
-    /* topkapi.jpg resminizin bu dizinde olduğundan emin olun */
-    background: url('topkapi.jpg') no-repeat center center/cover;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 1s ease-in-out;
-    z-index: 1000;
-}
-#welcome-text {
-    font-size: 5vw;
-    color: white;
-    font-weight: 700;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
-    opacity: 1;
-    transition: opacity 2s ease;
-    animation: pulse 2s infinite alternate;
-    text-align: center;
-}
-@keyframes pulse {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); }
-}
-
-/* DİL SEÇİM EKRANI - YENİ ARKAPLAN */
-#language-screen {
-    display: none;
-    width: 100%;
-    min-height: 100vh;
-    background-color: var(--background-dark); /* YENİ */
-    color: var(--primary-color); /* YENİ: Koyu yazı rengi */
-    text-align: center;
-    padding: 60px 20px;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-#language-screen.active {
-    display: block;
-    opacity: 1;
-}
-.flag-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    max-width: 1000px;
-    margin: 50px auto;
-    gap: 25px;
-}
-.flag {
-    background: var(--background-light); /* YENİ: Beyaz arka plan */
-    border-radius: 15px;
+/* Responsive Kapsayıcı */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
-    transition: transform 0.3s, box-shadow 0.3s;
-    overflow: hidden;
-    border: 1px solid #ddd;
-}
-.flag:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-.flag img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-.flag p {
-    color: var(--primary-color); /* Koyu metin */
-    font-weight: 600;
-    margin: 0;
 }
 
-/* BÖLÜMLER EKRANI - YENİ ARKAPLAN */
-#menu-screen {
-    display: none;
-    width: 100%;
-    min-height: 100vh;
-    background-color: var(--background-light); /* YENİ: Saf Beyaz */
+/* Başlık ve Menü */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 0;
     text-align: center;
-    padding: 60px 20px;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    margin-bottom: 20px;
 }
-#menu-screen.active {
-    display: block;
-    opacity: 1;
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 900;
 }
-.section-container {
+
+/* İçerik Kutusu */
+.content-box {
+    background: var(--secondary-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* BÖLÜMLER LİSTESİ (TOC) */
+.relics-toc {
+    list-style: none;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
-    margin-top: 50px;
-    max-width: 1200px;
-    margin: 50px auto;
+    gap: 10px;
+    margin-bottom: 40px;
 }
-.section-box {
-    width: 300px;
-    height: 180px;
-    background: var(--background-dark); /* Açık gri kutu */
-    border-radius: 20px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--primary-color);
-    font-size: 24px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s, color 0.3s, box-shadow 0.3s;
-    border: 3px solid var(--primary-color);
-    text-align: center;
-    padding: 10px;
-}
-.section-box:hover {
-    transform: translateY(-8px);
+.relics-toc li a {
+    display: block;
+    padding: 10px 15px;
     background-color: var(--primary-color);
     color: white;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: opacity 0.3s, transform 0.3s;
+    font-size: 0.9em;
+    font-weight: 600;
 }
-.section-box:hover::before {
-    content: '→';
-    font-size: 28px;
-    margin-bottom: 5px;
-    transition: color 0.3s;
+.relics-toc li a:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
-/* Mobil Uyum */
+/* BÖLÜM DETAYLARI */
+.relic-section {
+    padding: 30px 0;
+    border-bottom: 1px solid #ddd;
+    scroll-margin-top: 100px;
+}
+.relic-section:last-child {
+    border-bottom: none;
+}
+.relic-section h2 {
+    color: var(--primary-color);
+    border-left: 5px solid var(--primary-color);
+    padding-left: 10px;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* RESİM VE METİN DÜZENİ - GÜNCELLENDİ */
+.relic-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+    flex-direction: column; /* Ses ve resim/metin alt alta gelsin diye */
+}
+/* Resim ve metni bir arada tutan kapsayıcı (yeni) */
+.media-and-text-wrapper {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+.relic-content img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+.relic-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* YENİ SES OYNATICI STİLİ */
+.audio-container {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.audio-container h3 {
+    margin: 0 0 10px 0;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+.audio-container audio {
+    width: 100%;
+}
+
+/* Geri Dön Butonu */
+.back-button {
+    display: block;
+    width: 350px;
+    margin: 40px auto 20px auto;
+    padding: 15px 30px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+.back-button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Mobil Uyum - GÜNCELLENDİ */
 @media (max-width: 768px) {
-    #welcome-text {
-        font-size: 8vw;
+    header h1 {
+        font-size: 1.8em;
     }
-    .flag-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .content-box {
+        padding: 20px;
     }
-    .section-box {
+    .media-and-text-wrapper { /* Sadece görsel ve metin için flex yönünü değiştiriyoruz */
+        flex-direction: column;
+        align-items: center;
+    }
+    .relic-content img {
+        max-width: 100%;
+    }
+    .relic-section h2 {
+        font-size: 1.5em;
+    }
+    .back-button {
         width: 100%;
-        max-width: 350px;
-        height: 150px;
+        padding: 15px 10px;
     }
 }
 </style>
 </head>
 <body>
 
-<div id="welcome-screen">
-    <div id="welcome-text">TOPKAPI SARAYI<br>DİJİTAL TUR</div>
-</div>
+<header>
+    <h1 id="page-title">TOPKAPI SARAYI HAREM BÖLÜMLERİ</h1>
+</header>
 
-<div id="language-screen">
-    <h1 id="lang-title" style="font-size: 38px;">🕌 Dil Seçiniz • Select Language</h1>
+<div class="container">
+    <div class="content-box">
 
-    <div class="flag-grid">
-        <div class="flag" onclick="selectLanguage('tr')">
-            <img src="https://flagcdn.com/w320/tr.png" alt="Türkçe">
-            <p>Türkçe</p>
-        </div>
-        <div class="flag" onclick="selectLanguage('en')">
-            <img src="https://flagcdn.com/w320/gb.png" alt="English">
-            <p>English</p>
-        </div>
-        <div class="flag" onclick="selectLanguage('ru')">
-            <img src="https://flagcdn.com/w320/ru.png" alt="Русский">
-            <p>Русский</p>
-        </div>
-        <div class="flag" onclick="selectLanguage('ar')">
-            <img src="https://flagcdn.com/w320/sa.png" alt="العربية">
-            <p>العربية</p>
-        </div>
+        <ul class="relics-toc" id="relics-toc">
+            <li><a href="#harem-1" id="toc1">Altın Taht</a></li>
+            <li><a href="#harem-2" id="toc2">Cariyeler Taşlığı</a></li>
+            <li><a href="#harem-3" id="toc3">Valide Sultan Dairesi</a></li>
+            <li><a href="#harem-4" id="toc4">Hünkar Hamamı</a></li>
+            <li><a href="#harem-5" id="toc5">Şehzadeler Mektebi</a></li>
+            <li><a href="#harem-6" id="toc6">Kafes</a></li>
+            <li><a href="#harem-7" id="toc7">Hırka-i Saadet</a></li>
+        </ul>
+
+        <section id="harem-1" class="relic-section">
+            <h2 id="r1-title">Altın Taht</h2>
+            <div class="relic-content">
+
+                <div class="audio-container">
+                    <h3 id="r1-audio-title">Bölüm Anlatımını Dinle</h3>
+                    <audio controls id="r1-audio" src="">
+                        Tarayıcınız ses dosyasını desteklemiyor.
+                    </audio>
+                </div>
+
+                <div class="media-and-text-wrapper">
+                    <img id="r1-img" src="images/harem_altin_taht.jpg" alt="Bayramlarda kullanılan, saf altın ve değerli taşlarla süslü Altın Taht">
+                    <div class="relic-text">
+                        <p id="r1-text">
+                            Altın Taht, Osmanlı İmparatorluğu'nun en kudretli sembollerinden biri olarak, Topkapı Sarayı'nın şaşaalı merasimlerinde merkezi bir rol üstlenmiştir. Bayram Tahtı adıyla anılması, padişahların özellikle dinî bayramlarda bu taht üzerinde tebrikleri kabul etmeleri ve devlet ricaliyle buluşmaları geleneğinden kaynaklanır. Ahşap iskeleti tamamen 250 kilogram ağırlığındaki saf altın plakalarla kaplanmış olan bu eser, üzerine eklenen 954 adet zebercet ve diğer değerli taşlarla eşsiz bir sanatsal değere sahiptir. Tahtın bu ölçüdeki ihtişamı, padişahın mutlak gücünü ve imparatorluğun zenginliğini gözler önüne sererken, aynı zamanda ince işçiliği sayesinde ağırbaşlı ve zevkli bir estetiği korumayı başarmıştır. Bu nadide eser, Topkapı Sarayı'nda sergilenen ve Osmanlı'nın törensel gücünü en iyi yansıtan parçalarından biridir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="harem-2" class="relic-section">
+            <h2 id="r2-title">Cariyeler Taşlığı</h2>
+            <div class="relic-content">
+
+                <div class="audio-container">
+                    <h3 id="r2-audio-title">Bölüm Anlatımını Dinle</h3>
+                    <audio controls id="r2-audio" src="">
+                        Tarayıcınız ses dosyasını desteklemiyor.
+                    </audio>
+                </div>
+
+                <div class="media-and-text-wrapper">
+                    <img id="r2-img" src="images/harem_cariyeler_tasligi.jpg" alt="Cariyeler Koğuşlarına açılan taşlık avlu ve etrafındaki yaşam alanları">
+                    <div class="relic-text">
+                        <p id="r2-text">
+                            Cariyeler Taşlığı, Harem'in en kalabalık nüfusu barındıran ve hiyerarşinin alt kademelerindeki kadınlara (cariyeler, acemi kızlar) ait koğuşların çevresinde yer aldığı merkezi avludur. Burası, Harem'deki kadın hizmetlilerin günlük yaşamlarını sürdürdükleri, eğitim aldıkları ve hizmetlerini yürüttükleri alanların ana omurgasını oluşturur. Cariyeler, çocuk yaşta saraya alınır ve burada sıkı bir eğitimden geçerek kademeler hâlinde yükselir; bazıları gözdeler olarak seçilip padişaha eş (kadın efendi) olabilirken, diğerleri hizmet erbabı olarak kalırdı. Taşlığın çevresindeki yapılar arasında Cariyeler Hamamı ve hizmetlilerin hastalanması durumunda tedavi gördüğü, hatta ölenlerin cenazelerinin çıkarıldığı Meyyit Kapısı'nın da bulunduğu Cariyeler Hastanesi yer almaktadır. Bu taşlık, Harem'in en gizemli ve dış dünyaya kapalı yaşamının en somutlaştığı, saray hizmetinin çekirdeğini oluşturan önemli bir kompleksin merkezidir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="harem-3" class="relic-section">
+            <h2 id="r3-title">Valide Sultan Dairesi</h2>
+            <div class="relic-content">
+
+                <div class="audio-container">
+                    <h3 id="r3-audio-title">Bölüm Anlatımını Dinle</h3>
+                    <audio controls id="r3-audio" src="">
+                        Tarayıcınız ses dosyasını desteklemiyor.
+                    </audio>
+                </div>
+
+                <div class="media-and-text-wrapper">
+                    <img id="r3-img" src="images/harem_valide_sultan_dairesi.jpg" alt="Gösterişli çinilerle süslü Valide Sultan Dairesi'nden bir görünüm">
+                    <div class="relic-text">
+                        <p id="r3-text">
+                            Valide Sultan Dairesi, Topkapı Sarayı Harem'inin mimari ve idari açıdan en önemli ve en geniş bölümüdür. Padişahın annesi olan Valide Sultan, haremdeki kadınların ve cariyelerin mutlak yöneticisi ve otorite figürüydü. Bu daire, sadece onun yaşam alanı olmakla kalmaz, aynı zamanda imparatorluk siyasetinin de gayriresmi merkezi olarak işlev görürdü. Valide Sultan, bu daireden aldığı geniş yetkiyle, saraydaki atamalardan padişah üzerindeki etkisine kadar pek çok konuda söz sahibiydi. Mimari ihtişamı, diğer dairelerden ayrılır; en gösterişli çiniler, sedef işlemeler ve tezyinat bu bölümde yer alır, zira bu, Harem'in en güçlü kadınının konumunu yansıtmaktaydı. Dairenin etrafında, Valide Sultan'a hizmet eden başkadınlar, kalfalar ve cariyeler için de özel bölümler bulunurdu. Bu nedenle, Valide Sultan Dairesi, Osmanlı İmparatorluğu'nun perde arkası gücünün ve entrikalarının sahnelendiği kilit bir merkez olarak tarihe geçmiştir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="harem-4" class="relic-section">
+            <h2 id="r4-title">Hünkar Hamamı</h2>
+            <div class="relic-content">
+
+                <div class="audio-container">
+                    <h3 id="r4-audio-title">Bölüm Anlatımını Dinle</h3>
+                    <audio controls id="r4-audio" src="">
+                        Tarayıcınız ses dosyasını desteklemiyor.
+                    </audio>
+                </div>
+
+                <div class="media-and-text-wrapper">
+                    <img id="r4-img" src="images/harem_hunkar_hamami.jpg" alt="Altın yaldızlı kafesi ve mermer havuzuyla Hünkar Hamamı'nın sıcaklık kısmı">
+                    <div class="relic-text">
+                        <p id="r4-text">
+                            Topkapı Sarayı Harem Dairesi içinde yer alan Hünkar Hamamı, padişahların kişisel temizlik ve dinlenme alanlarından çok, siyasi ve törensel öneme sahip bir mekândır. Orijinal kaynaklarda bu hamamın, III. Murad ve Valide Sultan Nurbanu-Safiye Sultan dönemlerinde yapılan büyük mimari zenginleşmeyi ve klasik Osmanlı zenginliğini yansıttığı belirtilir. Harem'in Haliç'e bakan kısmında, Valide Sultan Hamamı ile yan yana inşa edilmiş olup, her iki hamamın tek bir külhandan (ısıtma merkezi) beslenmesi, Türk hamam mimarisinin verimlilik odaklı tasarımını gösterir. Hamam, genellikle soğukluk, ılıklık ve sıcaklık bölümlerinden oluşur; sıcaklık bölümündeki yıkanma yerinin suikast ihtimaline karşı altın yaldızlı kafesle ayrıldığı bilinir, bu da padişahın güvenliğine verilen önemi vurgular. Ayrıca, I. Abdülhamid Yatak Odası'nın tam karşısında bulunması, saray hiyerarşisi içindeki merkezi konumunu kanıtlar. Bu yapılar, sadece temizlik için değil, aynı zamanda Harem'deki sosyal ve özel hayatın önemli bir parçası olarak işlev görmüştür.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="harem-5" class="relics-section">
+            <h2 id="r5-title">Şehzadeler Mektebi</h2>
+            <div class="relic-content">
+
+                <div class="audio-container">
+                    <h3 id="r5-audio-title">Bölüm Anlatımını Dinle</h3>
+                    <audio controls id="r5-audio" src="">
+                        Tarayıcınız ses dosyasını desteklemiyor.
+                    </audio>
+                </div>
+
+                <div class="media-and-text-wrapper">
+                    <img id="r5-img" src="images/harem_sehzadeler_mektebi.jpg" alt="Şehzadelerin Arapça, matematik ve Fransızca gibi dersler aldığı eğitim odası">
+                    <div class="relic-text">
+                        <p id="r5-text">
+                            Topkapı Sarayı'ndaki Şehzadegân Mektebi, hanedan üyelerini gelecekteki devlet görevlerine hazırlayan, oldukça yapılandırılmış bir eğitim kurumu olarak işlev görmüştür. Padişah oğulları, sınıf geçme usulüne uygun hazırlanan bir müfredat çerçevesinde yetiştiriliyor, bu eğitim hem geleneksel hem de modern bilgileri içeriyordu. Şehzade Mehmed Selim Efendi'nin ders notlarından anlaşıldığı üzere; Arapça dil bilgisi, etik (Mecmûu'l-âdâb), ileri matematik (Hesâb-ı Mükemmel), geometri (Hendese) ve Fransızca gibi Batı dilleri dahi müfredatta yer almaktaydı. Öğrencilerin başarıları, "aliyü'l-âlâ" gibi derecelendirmelerle belgeleniyor, bu da eğitimin ciddiyetini ortaya koyuyordu. Ancak, II. Meşrutiyet devrinde ve bilhassa II. Abdülhamid'in tahttan indirilmesinin ardından, bu özel mektep kapatılmıştır. Kapanış sonrasında şehzadeler, ayrıcalıklı bir ortamdan çıkarılarak diğer çocuklar gibi kamu okullarında okumaya başlamış ve daha serbest bir ortama geçiş yapmıştır. Hatta son dönemlerde, Ömer Faruk Efendi örneğinde olduğu gibi, şehzadeler Viyana'daki Trezyanom gibi Avrupa mekteplerine dahi gönderilerek Batı standartlarında eğitim görmüştür. Bu değişim, Osmanlı İmparatorluğu'nun son yıllarında şehzade eğitiminde modernleşme ve standartlaşma yolundaki kararlı adımları göstermektedir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="harem-6" class="relic-section">
+            <h2 id="r6-title">Kafes (Şehzade Daireleri)</h2>
+            <div class="relic-content">
+
+                <div class="audio-container">
+                    <h3 id="r6-audio-title">Bölüm Anlatımını Dinle</h3>
+                    <audio controls id="r6-audio" src="">
+                        Tarayıcınız ses dosyasını desteklemiyor.
+                    </audio>
+                </div>
+
+                <div class="media-and-text-wrapper">
+                    <img id="r6-img" src="images/harem_kafes.jpg" alt="Şimşir ağaçlarıyla çevrili, demir kapılı Şehzadegân Dairesi'nden bir manzara">
+                    <div class="relic-text">
+                        <p id="r6-text">
+                            Topkapı Sarayı'nda uygulanan Kafes Sistemi, Osmanlı İmparatorluğu'nda yüzyıllardır süren kardeş katli geleneğini sona erdirmek amacıyla I. Ahmed döneminde (1603) kabul edilen Ekberiyet ve Erşediyet ilkesinin bir sonucudur. Bu sistemle birlikte, tahta aday olan şehzadeler (padişahın oğulları ve erkek akrabaları), sarayın dördüncü avlusundaki "Şehzadegân Dairesi" veya "Şimşirlik Kafesi" adı verilen bölümlerde dış dünyadan izole bir şekilde tutulmaya başlanmıştır. Bu daire, etrafı şimşir ağaçlarıyla çevrili, demir kapılı ve sürekli hadım ağaların nöbet tuttuğu, adeta küçük bir kale gibi tasarlanmış bir yapıdır. Şehzadelerin tek tesellisi, kendilerine hizmet eden cariyeler olsa da, hanedan soyunun kontrolsüz çoğalmasını engellemek için çocuk sahibi olmaları yasaktı ve kazara hamile kalan cariyelerin çocukları düşürülürdü. Kafes sistemi, siyasi infazları durdurarak hanedan üyelerinin hayatını korusa da, uzun yıllar (örneğin III. Osman 51 yıl) izole kalan şehzadelerin ruhi dengelerini bozmuş ve tecrübesiz, devlet işlerinden uzak padişahların tahta çıkmasına neden olmuştur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="harem-7" class="relics-section">
+            <h2 id="r7-title">Hırka-i Saadet</h2>
+            <div class="relic-content">
+
+                <div class="audio-container">
+                    <h3 id="r7-audio-title">Bölüm Anlatımını Dinle</h3>
+                    <audio controls id="r7-audio" src="">
+                        Tarayıcınız ses dosyasını desteklemiyor.
+                    </audio>
+                </div>
+
+                <div class="media-and-text-wrapper">
+                    <img id="r7-img" src="images/harem_hirka_i_saadet.jpg" alt="Hz. Peygamber'e ait olan ve Topkapı Sarayı'nda muhafaza edilen Hırka-i Saadet'in bulunduğu daire">
+                    <div class="relic-text">
+                        <p id="r7-text">
+                            Hırka-i Saadet, makaleye göre, öncelikle Hz. Peygamber'e ait olan ve Topkapı Sarayı'ndaki Mukaddes Emanetler arasında mümtaz bir yere sahip olan teberrüklerden biridir. Osmanlılar bu tür emanetleri birer bereket, şifa veya teberrük vesilesi olarak kabul etmiş ve Hz. Peygamber mirasına bir hürmet ve hizmet vesilesi görmüşlerdir. Kesin olarak bilinen şey, Hırka-i Saadet'in 1522 yılındaki Rodos seferine Kanuni Sultan Süleyman ile birlikte götürüldüğüdür. Hatta dönemin kaynakları, bu emanetin sefer sırasında cevahirle süslü altın bir kafes içinde yeşil ile örtülmüş olarak taşındığını belirtir. Padişahlar ğazâ ve sefere çıkacakları zaman, bu kıymetli sandıkçayı özel bir arabaya yükletip yanlarına alarak fethin ve zaferin o vesile ile kazanılacağını inanırlardı. Özellikle I. Ahmed devrinde, hırkanın büyük bir ihtiramla karşılandığı ve süslü bohçalara sarılı bir sandık içinde muhafaza edildiği yazılmıştır. Sultan I. Ahmed'in, senenin mübarek günlerinde "teberrük kastıyla" hırkayı bizzat eliyle yıkadığı ve temizlenen suyu devlet erkanına dağıttığı da kaydedilen teamüller arasındadır.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
-</div>
 
-<div id="menu-screen">
-    <h1 id="menu-title" style="font-size: 38px; color:var(--primary-color);">Topkapı Sarayı Bölümleri</h1>
-
-    <div class="section-container">
-        <div class="section-box" id="harem-box" data-page="harem.html">HAREM</div>
-        <div class="section-box" id="bahce-box" data-page="bahce.html">BAHÇE</div>
-        <div class="section-box" id="eserler-box" data-page="eserler.html">KUTSAL EMANETLER & KOLEKSİYONLAR</div>
-    </div>
+    <a href="index.html" class="back-button" id="back-btn">← Harem, Bahçe, Eserler Menüsüne Geri Dön</a>
 </div>
 
 
 <script>
-// Dil çevirileri için veri yapısı
+// Çeviri Verisi (HAREM)
 const translations = {
     'tr': {
-        langTitle: '🕌 Dil Seçiniz • Select Language',
-        menuTitle: 'Topkapı Sarayı Bölümleri',
-        harem: 'HAREM',
-        bahce: 'BAHÇE',
-        eserler: 'KUTSAL EMANETLER & KOLEKSİYONLAR',
-        welcome: 'TOPKAPI SARAYI<br>DİJİTAL TUR'
+        titleTag: 'Harem Bölümleri | Topkapı Sarayı',
+        pageTitle: 'TOPKAPI SARAYI HAREM BÖLÜMLERİ',
+        toc1: 'Altın Taht', toc2: 'Cariyeler Taşlığı', toc3: 'Valide Sultan Dairesi', toc4: 'Hünkar Hamamı', toc5: 'Şehzadeler Mektebi', toc6: 'Kafes', toc7: 'Hırka-i Saadet',
+        r1Title: 'Altın Taht', r1Text: 'Altın Taht, Osmanlı İmparatorluğu\'nun en kudretli sembollerinden biri olarak, Topkapı Sarayı\'nın şaşaalı merasimlerinde merkezi bir rol üstlenmiştir. Bayram Tahtı adıyla anılması, padişahların özellikle dinî bayramlarda bu taht üzerinde tebrikleri kabul etmeleri ve devlet ricaliyle buluşmaları geleneğinden kaynaklanır. Ahşap iskeleti tamamen 250 kilogram ağırlığındaki saf altın plakalarla kaplanmış olan bu eser, üzerine eklenen 954 adet zebercet ve diğer değerli taşlarla eşsiz bir sanatsal değere sahiptir. Tahtın bu ölçüdeki ihtişamı, padişahın mutlak gücünü ve imparatorluğun zenginliğini gözler önüne sererken, aynı zamanda ince işçiliği sayesinde ağırbaşlı ve zevkli bir estetiği korumayı başarmıştır. Bu nadide eser, Topkapı Sarayı\'nda sergilenen ve Osmanlı\'nın törensel gücünü en iyi yansıtan parçalarından biridir.',
+        r2Title: 'Cariyeler Taşlığı', r2Text: 'Cariyeler Taşlığı, Harem\'in en kalabalık nüfusu barındıran ve hiyerarşinin alt kademelerindeki kadınlara (cariyeler, acemi kızlar) ait koğuşların çevresinde yer aldığı merkezi avludur. Burası, Harem\'deki kadın hizmetlilerin günlük yaşamlarını sürdürdükleri, eğitim aldıkları ve hizmetlerini yürüttükleri alanların ana omurgasını oluşturur. Cariyeler, çocuk yaşta saraya alınır ve burada sıkı bir eğitimden geçerek kademeler hâlinde yükselir; bazıları gözdeler olarak seçilip padişaha eş (kadın efendi) olabilirken, diğerleri hizmet erbabı olarak kalırdı. Taşlığın çevresindeki yapılar arasında Cariyeler Hamamı ve hizmetlilerin hastalanması durumunda tedavi gördüğü, hatta ölenlerin cenazelerinin çıkarıldığı Meyyit Kapısı\'nın da bulunduğu Cariyeler Hastanesi yer almaktadır. Bu taşlık, Harem\'in en gizemli ve dış dünyaya kapalı yaşamının en somutlaştığı, saray hizmetinin çekirdeğini oluşturan önemli bir kompleksin merkezidir.',
+        r3Title: 'Valide Sultan Dairesi', r3Text: 'Valide Sultan Dairesi, Topkapı Sarayı Harem\'inin mimari ve idari açıdan en önemli ve en geniş bölümüdür. Padişahın annesi olan Valide Sultan, haremdeki kadınların ve cariyelerin mutlak yöneticisi ve otorite figürüydü. Bu daire, sadece onun yaşam alanı olmakla kalmaz, aynı zamanda imparatorluk siyasetinin de gayriresmi merkezi olarak işlev görürdü. Valide Sultan, bu daireden aldığı geniş yetkiyle, saraydaki atamalardan padişah üzerindeki etkisine kadar pek çok konuda söz sahibiydi. Mimari ihtişamı, diğer dairelerden ayrılır; en gösterişli çiniler, sedef işlemeler ve tezyinat bu bölümde yer alır, zira bu, Harem\'in en güçlü kadınının konumunu yansıtmaktaydı. Dairenin etrafında, Valide Sultan\'a hizmet eden başkadınlar, kalfalar ve cariyeler için de özel bölümler bulunurdu. Bu nedenle, Valide Sultan Dairesi, Osmanlı İmparatorluğu\'nun perde arkası gücünün ve entrikalarının sahnelendiği kilit bir merkez olarak tarihe geçmiştir.',
+        r4Title: 'Hünkar Hamamı', r4Text: 'Topkapı Sarayı Harem Dairesi içinde yer alan Hünkar Hamamı, padişahların kişisel temizlik ve dinlenme alanlarından çok, siyasi ve törensel öneme sahip bir mekândır. Orijinal kaynaklarda bu hamamın, III. Murad ve Valide Sultan Nurbanu-Safiye Sultan dönemlerinde yapılan büyük mimari zenginleşmeyi ve klasik Osmanlı zenginliğini yansıttığı belirtilir. Harem\'in Haliç\'e bakan kısmında, Valide Sultan Hamamı ile yan yana inşa edilmiş olup, her iki hamamın tek bir külhandan (ısıtma merkezi) beslenmesi, Türk hamam mimarisinin verimlilik odaklı tasarımını gösterir. Hamam, genellikle soğukluk, ılıklık ve sıcaklık bölümlerinden oluşur; sıcaklık bölümündeki yıkanma yerinin suikast ihtimaline karşı altın yaldızlı kafesle ayrıldığı bilinir, bu da padişahın güvenliğine verilen önemi vurgular. Ayrıca, I. Abdülhamid Yatak Odası\'nın tam karşısında bulunması, saray hiyerarşisi içindeki merkezi konumunu kanıtlar. Bu yapılar, sadece temizlik için değil, aynı zamanda Harem\'deki sosyal ve özel hayatın önemli bir parçası olarak işlev görmüştür.',
+        r5Title: 'Şehzadeler Mektebi', r5Text: 'Topkapı Sarayı\'ndaki Şehzadegân Mektebi, hanedan üyelerini gelecekteki devlet görevlerine hazırlayan, oldukça yapılandırılmış bir eğitim kurumu olarak işlev görmüştür. Padişah oğulları, sınıf geçme usulüne uygun hazırlanan bir müfredat çerçevesinde yetiştiriliyor, bu eğitim hem geleneksel hem de modern bilgileri içeriyordu. Şehzade Mehmed Selim Efendi\'nin ders notlarından anlaşıldığı üzere; Arapça dil bilgisi, etik (Mecmûu\'l-âdâb), ileri matematik (Hesâb-ı Mükemmel), geometri (Hendese) ve Fransızca gibi Batı dilleri dahi müfredatta yer almaktaydı. Öğrencilerin başarıları, "aliyü\'l-âlâ" gibi derecelendirmelerle belgeleniyor, bu da eğitimin ciddiyetini ortaya koyuyordu. Ancak, II. Meşrutiyet devrinde ve bilhassa II. Abdülhamid\'in tahttan indirilmesinin ardından, bu özel mektep kapatılmıştır. Kapanış sonrasında şehzadeler, ayrıcalıklı bir ortamdan çıkarılarak diğer çocuklar gibi kamu okullarında okumaya başlamış ve daha serbest bir ortama geçiş yapmıştır. Hatta son dönemlerde, Ömer Faruk Efendi örneğinde olduğu gibi, şehzadeler Viyana\'daki Trezyanom gibi Avrupa mekteplerine dahi gönderilerek Batı standartlarında eğitim görmüştür. Bu değişim, Osmanlı İmparatorluğu\'nun son yıllarında şehzade eğitiminde modernleşme ve standartlaşma yolundaki kararlı adımları göstermektedir.',
+        r6Title: 'Kafes (Şehzade Daireleri)', r6Text: 'Topkapı Sarayı\'nda uygulanan Kafes Sistemi, Osmanlı İmparatorluğu\'nda yüzyıllardır süren kardeş katli geleneğini sona erdirmek amacıyla I. Ahmed döneminde (1603) kabul edilen Ekberiyet ve Erşediyet ilkesinin bir sonucudur. Bu sistemle birlikte, tahta aday olan şehzadeler (padişahın oğulları ve erkek akrabaları), sarayın dördüncü avlusundaki "Şehzadegân Dairesi" veya "Şimşirlik Kafesi" adı verilen bölümlerde dış dünyadan izole bir şekilde tutulmaya başlanmıştır. Bu daire, etrafı şimşir ağaçlarıyla çevrili, demir kapılı ve sürekli hadım ağaların nöbet tuttuğu, adeta küçük bir kale gibi tasarlanmış bir yapıdır. Şehzadelerin tek tesellisi, kendilerine hizmet eden cariyeler olsa da, hanedan soyunun kontrolsüz çoğalmasını engellemek için çocuk sahibi olmaları yasaktı ve kazara hamile kalan cariyelerin çocukları düşürülürdü. Kafes sistemi, siyasi infazları durdurarak hanedan üyelerinin hayatını korusa da, uzun yıllar (örneğin III. Osman 51 yıl) izole kalan şehzadelerin ruhi dengelerini bozmuş ve tecrübesiz, devlet işlerinden uzak padişahların tahta çıkmasına neden olmuştur.',
+        r7Title: 'Hırka-i Saadet', r7Text: 'Hırka-i Saadet, makaleye göre, öncelikle Hz. Peygamber\'e ait olan ve Topkapı Sarayı\'ndaki Mukaddes Emanetler arasında mümtaz bir yere sahip olan teberrüklerden biridir. Osmanlılar bu tür emanetleri birer bereket, şifa veya teberrük vesilesi olarak kabul etmiş ve Hz. Peygamber mirasına bir hürmet ve hizmet vesilesi görmüşlerdir. Kesin olarak bilinen şey, Hırka-i Saadet\'in 1522 yılındaki Rodos seferine Kanuni Sultan Süleyman ile birlikte götürüldüğüdür. Hatta dönemin kaynakları, bu emanetin sefer sırasında cevahirle süslü altın bir kafes içinde yeşil ile örtülmüş olarak taşındığını belirtir. Padişahlar ğazâ ve sefere çıkacakları zaman, bu kıymetli sandıkçayı özel bir arabaya yükletip yanlarına alarak fethin ve zaferin o vesile ile kazanılacağını inanırlardı. Özellikle I. Ahmed devrinde, hırkanın büyük bir ihtiramla karşılandığı ve süslü bohçalara sarılı bir sandık içinde muhafaza edildiği yazılmıştır. Sultan I. Ahmed\'in, senenin mübarek günlerinde "teberrük kastıyla" hırkayı bizzat eliyle yıkadığı ve temizlenen suyu devlet erkanına dağıttığı da kaydedilen teamüller arasındadır.',
+        backBtn: '← Harem, Bahçe, Eserler Menüsüne Geri Dön',
+        audioTitle: 'Bölüm Anlatımını Dinle' // YENİ: Ses başlığı
     },
     'en': {
-        langTitle: '🕌 Select Language • Dil Seçiniz',
-        menuTitle: 'Topkapi Palace Sections',
-        harem: 'THE HAREM',
-        bahce: 'COURTYARDS & GARDENS',
-        eserler: 'HOLY RELICS & COLLECTIONS',
-        welcome: 'TOPKAPI PALACE<br>DIGITAL TOUR'
+        titleTag: 'Harem Sections | Topkapi Palace',
+        pageTitle: 'TOPKAPI PALACE HAREM SECTIONS',
+        toc1: 'Golden Throne', toc2: 'Courtyard of Concubines', toc3: 'Valide Sultan\'s Apartments', toc4: 'Imperial Bath', toc5: 'School of Princes', toc6: 'The Cage (Kafes)', toc7: 'The Holy Mantle (Hırka-i Saadet)',
+        r1Title: 'Golden Throne', r1Text: 'The Golden Throne (Bayram Tahtı) served as a central symbol of Ottoman power during stately ceremonies, particularly during religious holidays, where the Sultan received congratulations. This magnificent piece has a wooden frame completely covered with 250 kilograms of pure gold plates and is adorned with 954 zircons and other precious stones, reflecting the absolute power and wealth of the empire with refined artistry. Image URL: images/harem_altin_taht.jpg',
+        r2Title: 'Courtyard of the Concubines', r2Text: 'The Courtyard of the Concubines is the central courtyard in the Harem, housing the largest population and surrounded by the dormitories of the lower-ranking women (concubines and novices). This area was the main spine where female servants lived, received strict education, and performed their duties. The complex includes the Concubines’ Bath and the Concubines’ Hospital, emphasizing its function as the hub of service and daily life within the isolated world of the Harem. Image URL: images/harem_cariyeler_tasligi.jpg',
+        r3Title: 'The Valide Sultan\'s Apartments', r3Text: 'The Valide Sultan’s Apartments constitute the most significant and spacious section of the Topkapı Palace Harem, serving as the residential and administrative center for the Sultan’s mother, the most powerful female figure in the empire. Her authority extended to appointments and influence over the Sultan. The apartment\'s unparalleled architectural splendor, featuring the most elaborate tiles and mother-of-pearl inlays, reflected the Valide Sultan’s supreme position. It was a crucial center where the behind-the-scenes power and politics of the Ottoman Empire were orchestrated. Image URL: images/harem_valide_sultan_dairesi.jpg',
+        r4Title: 'The Imperial Bath (Hünkar Hamamı)', r4Text: 'The Imperial Bath within the Topkapı Palace Harem was less a private washing area and more a place of political and ceremonial importance. Documented sources indicate that it reflected the rich classical Ottoman style, especially under Murad III and the Valide Sultans. It was co-located with the Valide Sultan’s Bath and shared a single heating furnace, demonstrating efficient Ottoman bath architecture. The bathing area in the *sıcaklık* (hot room) was separated by a gilded cage against assassination attempts, highlighting security concerns. Its central location, opposite the Imperial Bedroom, underscores its hierarchical significance. Image URL: images/harem_hunkar_hamami.jpg',
+        r5Title: 'The Princes\' School', r5Text: 'The Şehzadegân Mektebi (Princes’ School) at Topkapı Palace was a highly structured educational institution designed to prepare dynastic members for future state duties. Princes were educated through a graded curriculum that included traditional and modern knowledge, such as Arabic grammar, ethics (Mecmûu\'l-âdâb), advanced mathematics, geometry, and even Western languages like French. After the proclamation of the Second Constitutional Era and especially following the deposition of Abdülhamid II, the school was closed. Princes were subsequently educated in public schools or sent to European institutions like the Trezyanom in Vienna, marking the empire\'s definitive steps towards modernizing and standardizing the education of its royal members. Image URL: images/harem_sehzadeler_mektebi.jpg',
+        r6Title: 'The Cage (Kafes)', r6Text: 'The Kafes System, implemented during the reign of Ahmed I (1603) following the principle of *Ekberiyet ve Erşediyet* (seniority and sound mind), was introduced to end centuries of fratricide. Princes were isolated in the "Şimşirlik Kafesi" within the palace\'s fourth courtyard. This structure was a virtual fortress, guarded by eunuchs, where princes lived in luxury but were cut off from the outside world. While the system protected their lives, it prohibited them from having children and often resulted in isolated princes, like Osman III (51 years), who were mentally unstable or inexperienced when they ascended the throne, posing new problems for the Ottoman state. Image URL: images/harem_kafes.jpg',
+        r7Title: 'The Holy Mantle (Hırka-i Saadet)', r7Text: 'According to the article, the Hırka-i Saadet (Holy Mantle) is a highly esteemed relic belonging to the Prophet Muhammad and holds a preeminent place among the Sacred Relics in Topkapı Palace. The Ottomans regarded such relics as a means of blessing, healing, and showing profound respect for the Prophet\'s legacy. It is confirmed that the Holy Mantle was carried by Süleyman the Magnificent during the Rhodes campaign in 1522, transported in a gold cage adorned with jewels. Sultans took the precious casket with them on campaigns, believing it would ensure victory. During the reign of Ahmed I, the Mantle was treated with great reverence; the Sultan personally washed it on holy days for blessings, distributing the cleansed water to state officials. Image URL: images/harem_hirka_i_saadet.jpg',
+        backBtn: '← Back to Harem, Gardens, Artifacts Menu',
+        audioTitle: 'Listen to the Section Narration' // YENİ: Ses başlığı
     },
     'ru': {
-        langTitle: '🕌 Выберите язык • Select Language',
-        menuTitle: 'Разделы дворца Топкапы',
-        harem: 'ГАРЕМ',
-        bahce: 'ДВОРЫ И САДЫ',
-        eserler: 'СВЯЩЕННЫЕ РЕЛИКВИИ И КОЛЛЕКЦИИ',
-        welcome: 'ДВОРЕЦ ТОПКАПЫ<br>ЦИФРОВОЙ ТУР'
+        titleTag: 'Разделы Гарема | Дворец Топкапы',
+        pageTitle: 'РАЗДЕЛЫ ГАРЕМА ДВОРЦА ТОПКАПЫ',
+        toc1: 'Золотой Трон', toc2: 'Двор Наложниц', toc3: 'Апартаменты Валиде Султан', toc4: 'Императорская Баня', toc5: 'Школа Принцев', toc6: 'Клетка (Кафес)', toc7: 'Священная Мантия (Хырка-и Саадет)',
+        r1Title: 'Золотой Трон', r1Text: 'Золотой Трон (Байрам Тахты) служил центральным символом османской власти во время торжественных церемоний, особенно в религиозные праздники, когда Султан принимал поздравления. Эта великолепная вещь имеет деревянный каркас, полностью покрытый 250 килограммами чистых золотых пластин и украшенный 954 цирконами и другими драгоценными камнями, отражая абсолютную власть и богатство империи с изысканным искусством.',
+        r2Title: 'Двор Наложниц', r2Text: 'Двор Наложниц - это центральный двор в Гареме, где проживало самое большое население и который был окружен общежитиями для женщин низшего ранга (наложниц и новичков). Эта зона была главной артерией, где жили, получали строгое образование и выполняли свои обязанности женщины-служащие. Комплекс включает Баню Наложниц и Больницу Наложниц, подчеркивая его функцию как центра обслуживания и повседневной жизни в изолированном мире Гарема.',
+        r3Title: 'Апартаменты Валиде Султан', r3Text: 'Апартаменты Валиде Султан представляют собой самую значительную и просторную часть Гарема дворца Топкапы, служащую жилым и административным центром для матери Султана, самой могущественной женской фигуры в империи. Ее авторитет распространялся на назначения и влияние на Султана. Несравненное архитектурное великолепие апартаментов, украшенных самой изысканной плиткой и перламутровыми инкрустациями, отражало высшее положение Валиде Султан. Это был ключевой центр, где осуществлялась закулисная власть и политика Османской империи.',
+        r4Title: 'Императорская Баня (Хюнкар Хамамы)', r4Text: 'Императорская Баня в Гареме дворца Топкапы была не столько частной зоной для мытья, сколько местом политической и церемониальной важности. Документированные источники указывают, что она отражала богатый классический османский стиль, особенно при Мураде III и Валиде Султан. Она располагалась рядом с Баней Валиде Султан и питалась от одной печи, демонстрируя эффективную архитектуру турецких бань. Зона для мытья в *сыджаклык* (горячей комнате) была отделена позолоченной клеткой от попыток убийства, подчеркивая заботу о безопасности. Ее центральное расположение, напротив Спальни Султана, подчеркивает ее иерархическое значение.',
+        r5Title: 'Школа Принцев', r5Text: 'Школа Шехзадеган (Школа Принцев) во дворце Топкапы была высокоструктурированным учебным заведением, предназначенным для подготовки членов династии к будущим государственным обязанностям. Принцы получали образование по утвержденной учебной программе, которая включала как традиционные, так и современные знания, такие как арабская грамматика, этика, высшая математика, геометрия и даже западные языки, например, французский. После провозглашения Второй Конституционной эры и, в частности, после свержения Абдул-Хамида II, школа была закрыта. Принцы впоследствии стали обучаться в государственных школах или отправляться в европейские учебные заведения, такие как Трезианум в Вене, что ознаменовало решительные шаги империи к модернизации и стандартизации образования своих королевских членов.',
+        r6Title: 'Клетка (Кафес)', r6Text: 'Система Кафес, введенная во время правления Ахмеда I (1603) в соответствии с принципом *Экмерийет и Эршедийет* (старшинство и здравомыслие), была призвана положить конец многовековому братоубийству. Принцы были изолированы в "Шимширлик Кафеси" во дворе четвертого двора дворца. Эта структура представляла собой фактически крепость, охраняемую евнухами, где принцы жили в роскоши, но были отрезаны от внешнего мира. Хотя система защищала их жизни, она запрещала им иметь детей и часто приводила к тому, что изолированные принцы, такие как Осман III (51 год изоляции), восходили на трон, будучи психически нестабильными или неопытными, что создавало новые проблемы для Османского государства.',
+        r7Title: 'Священная Мантия (Хырка-и Саадет)', r7Text: 'Согласно статье, Хырка-и Саадет (Священная Мантия) является высокочтимой реликвией, принадлежавшей Пророку Мухаммеду, и занимает выдающееся место среди Священных Реликвий во дворце Топкапы. Османы рассматривали такие реликвии как средство благословения, исцеления и проявления глубокого уважения к наследию Пророка. Подтверждено, что Священная Мантия была перенесена Сулейманом Великолепным во время Родосской кампании в 1522 году, перевозилась в золотой клетке, украшенной драгоценными камнями. Султаны брали драгоценный ларец с собой в походы, веря, что это обеспечит победу. Во время правления Ахмеда I к Мантии относились с большим почтением; Султан лично омывал ее в священные дни для благословения, раздавая очищенную воду государственным чиновникам.',
+        backBtn: '← Назад в Меню Гарема, Садов, Экспонатов',
+        audioTitle: 'Прослушать рассказ о разделе' // YENİ: Ses başlığı
     },
     'ar': {
-        langTitle: '🕌 اختر اللغة • Select Language',
-        menuTitle: 'أقسام قصر طوب قابي',
-        harem: 'الحَرِيم',
-        bahce: 'الأفنية والحدائق',
-        eserler: 'الآثار المقدسة والمجموعات',
-        welcome: 'قصر طوب قابي<br>جولة رقمية'
+        titleTag: 'أقسام الحريم | قصر طوب قابي',
+        pageTitle: 'أقسام حريم قصر طوب قابي',
+        toc1: 'العرش الذهبي', toc2: 'فناء الجواري', toc3: 'جناح الوالدة السلطان', toc4: 'الحمام السلطاني', toc5: 'مدرسة الأمراء', toc6: 'القفص (كافيس)', toc7: 'البردة الشريفة (خرقة السعادة)',
+        r1Title: 'العرش الذهبي', r1Text: 'العرش الذهبي (بايرام تاهتي) كان بمثابة رمز مركزي للقوة العثمانية خلال الاحتفالات الرسمية، خاصة في الأعياد الدينية، حيث كان السلطان يستقبل التهاني. هذه القطعة الرائعة لها إطار خشبي مغطى بالكامل بـ 250 كيلوغرامًا من صفائح الذهب الخالص ومزينة بـ 954 حجر زركون وأحجار كريمة أخرى، مما يعكس القوة المطلقة وثروة الإمبراطورية بمهارة فنية راقية.',
+        r2Title: 'فناء الجواري', r2Text: 'فناء الجواري هو الفناء المركزي في الحريم، الذي يضم أكبر عدد من السكان وتحيط به مهاجع النساء ذوات الرتب الأدنى (الجواري والمبتدئات). كانت هذه المنطقة هي الشريان الرئيسي حيث كانت تعيش الخادمات، ويتلقين تعليمًا صارمًا، ويؤدين واجباتهن. يضم المجمع حمام الجواري ومستشفى الجواري، مما يؤكد وظيفته كمركز للخدمة والحياة اليومية داخل عالم الحريم المعزول.',
+        r3Title: 'جناح الوالدة السلطان', r3Text: 'يمثل جناح الوالدة السلطان الجزء الأكثر أهمية واتساعًا في حريم قصر طوب قابي، حيث يعمل كمركز سكني وإداري لوالدة السلطان، وهي أقوى شخصية نسائية في الإمبراطورية. امتدت سلطتها لتشمل التعيينات والتأثير على السلطان. عكس الفخامة المعمارية التي لا مثيل لها للجناح، والتي تتميز بأكثر البلاطات تفصيلاً والتطعيمات بالصدف، المكانة العليا للوالدة السلطان. لقد كان مركزًا حاسمًا حيث تم تنسيق السلطة والسياسة الكامنة وراء الكواليس في الإمبراطورية العثمانية.',
+        r4Title: 'الحمام السلطاني (Hünkar Hamamı)', r4Text: 'كان الحمام السلطاني داخل جناح الحريم بقصر طوب قابي أقل كمنطقة استحمام خاصة وأكثر كمكان ذي أهمية سياسية واحتفالية. تشير المصادر الموثقة إلى أنه عكس النمط العثماني الكلاسيكي الغني، خاصة في عهد مراد الثالث والوالدة السلاطين. كان يقع بجوار حمام الوالدة السلطان ويتغذى من فرن تدفئة واحد، مما يدل على كفاءة العمارة التركية للحمامات. تم فصل منطقة الاستحمام في *السجقليك* (الغرفة الساخنة) بقفص مذهب للحماية من محاولات الاغتيال، مما يسلط الضوء على المخاوف الأمنية. يؤكد موقعه المركزي، مقابل غرفة نوم السلطان، على أهميته الهرمية.',
+        r5Title: 'مدرسة الأمراء', r5Text: 'كانت مدرسة الشهزادكان (مدرسة الأمراء) في قصر طوب قابي مؤسسة تعليمية عالية التنظيم مصممة لإعداد أفراد الأسرة الحاكمة لمهام الدولة المستقبلية. تلقى الأمراء تعليمهم من خلال منهج متدرج شمل المعرفة التقليدية والحديثة، مثل قواعد اللغة العربية والأخلاق والرياضيات المتقدمة والهندسة وحتى اللغات الغربية مثل الفرنسية. بعد إعلان العصر الدستوري الثاني، وخاصة بعد خلع عبد الحميد الثاني، أغلقت المدرسة. التحق الأمراء بعد ذلك بالمدارس العامة أو أُرسلوا إلى مؤسسات أوروبية مثل تريزيانوم في فيينا، مما يمثل خطوات الإمبراطورية الحاسمة نحو تحديث وتوحيد تعليم أفرادها الملكيين.',
+        r6Title: 'القفص (كافيس)', r6Text: 'تم إدخال نظام القفص، الذي تم تنفيذه في عهد أحمد الأول (1603) بعد مبدأ *الأكبارية والأرشدية* (الأقدمية وسلامة العقل)، لإنهاء قرون من قتل الإخوة. تم عزل الأمراء في "قفص شيمشيرليك" داخل الفناء الرابع للقصر. كان هذا الهيكل عبارة عن قلعة افتراضية، يحرسه الخصيان، حيث عاش الأمراء في ترف ولكنهم كانوا معزولين عن العالم الخارجي. بينما حمى النظام حياتهم، فقد منعهم من إنجاب الأطفال وغالبًا ما أدى إلى تولي أمراء معزولين، مثل عثمان الثالث (51 عامًا من العزلة)، العرش وهم غير مستقرين عقليًا أو غير ذوي خبرة، مما شكل مشاكل جديدة للدولة العثمانية.',
+        r7Title: 'البردة الشريفة (خرقة السعادة)', r7Text: 'وفقًا للمقال، فإن البردة الشريفة (خرقة السعادة) هي إحدى الآثار النبوية المبجلة التي تعود إلى النبي محمد وتحتل مكانة بارزة بين الآثار المقدسة في قصر طوب قابي. اعتبر العثمانيون مثل هذه الآثار وسيلة للبركة والشفاء وإظهار الاحترام العميق لإرث النبي. تم التأكيد على أن البردة الشريفة حملها سليمان القانوني خلال حملة رودس عام 1522، ونُقلت في قفص ذهبي مزين بالجواهر. كان السلاطين يأخذون الصندوق الثمين معهم في الحملات، معتقدين أنه سيضمن النصر. في عهد أحمد الأول، تم التعامل مع البردة بتبجيل كبير؛ حيث قام السلطان بغسلها شخصيًا في الأيام المقدسة للحصول على البركة، موزعًا الماء المطهر على مسؤولي الدولة.',
+        backBtn: '← العودة إلى قائمة الحريم والحدائق والتحف',
+        audioTitle: 'استمع إلى سرد القسم' // YENİ: Ses başlığı
     }
 };
 
-let currentLang = 'tr';
 
-/* ✔ DİL DEĞİŞTİRME FONKSİYONU */
+// Fonksiyon: URL'den dil parametresini okuma ve içeriği çevirme
+function getLangFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    // Eğer lang parametresi yoksa veya desteklenmiyorsa 'tr' kullan
+    const lang = params.get('lang') || 'tr';
+    return translations[lang] ? lang : 'tr';
+}
+
 function updateContent(lang) {
     const t = translations[lang];
+    if (!t) return;
 
-    document.getElementById('welcome-text').innerHTML = t.welcome;
-    document.getElementById('lang-title').innerHTML = t.langTitle;
-    document.getElementById('menu-title').innerHTML = t.menuTitle;
-    document.getElementById('harem-box').innerText = t.harem;
-    document.getElementById('bahce-box').innerText = t.bahce;
-    document.getElementById('eserler-box').innerText = t.eserler;
-}
+    document.getElementById('title-tag').innerText = t.titleTag;
+    document.getElementById('page-title').innerText = t.pageTitle;
+    document.getElementById('back-btn').innerText = t.backBtn;
 
-
-/* ✔ HOŞ GELDİNİZ EKRAN GEÇİŞİ */
-setTimeout(() => {
-    document.getElementById("welcome-text").style.opacity = "0";
-}, 2500);
-
-setTimeout(() => {
-    document.getElementById("welcome-screen").style.opacity = "0";
-    document.getElementById("language-screen").classList.add("active");
-}, 4500);
-
-setTimeout(() => {
-    document.getElementById("welcome-screen").style.display = "none";
-}, 5500);
-
-
-/* ✔ DİL SEÇİLDİKTEN SONRA */
-function selectLanguage(lang) {
-    currentLang = lang;
-    updateContent(lang);
-
-    document.getElementById("language-screen").classList.remove("active");
-    document.getElementById("menu-screen").classList.add("active");
-}
-
-
-/* ✔ BUTON TIKLAMA ve DİL PARAMETRESİNİ AKTARMA */
-document.querySelectorAll('.section-box').forEach(box => {
-    box.addEventListener('click', function() {
-        const page = this.getAttribute('data-page');
-        goTo(page, currentLang);
+    // YENİ: Ses Başlıklarını Güncelle
+    const audioTitles = document.querySelectorAll('[id$="-audio-title"]');
+    audioTitles.forEach(element => {
+        element.innerText = t.audioTitle;
     });
-});
 
-function goTo(page, lang) {
-    // Seçilen dil bilgisini URL parametresi olarak hedefe gönderir
-    window.location.href = `${page}?lang=${lang}`;
+    // YENİ: Ses Dosyası Kaynağını (src) Dile Göre Güncelleme (Çoklu Dil Desteği)
+    const audioElements = document.querySelectorAll('audio[id$="-audio"]');
+    audioElements.forEach(audioElement => {
+        const sectionId = audioElement.id.replace('-audio', ''); // r1, r2, ...
+        let baseFileName;
+
+        // sectionId'ye göre dosya adını belirleme (küçük harf kontrolü için)
+        switch(sectionId) {
+            case 'r1': baseFileName = 'harem_altin_taht'; break;
+            case 'r2': baseFileName = 'harem_cariyeler_tasligi'; break;
+            case 'r3': baseFileName = 'harem_valide_sultan_dairesi'; break;
+            case 'r4': baseFileName = 'harem_hunkar_hamami'; break;
+            case 'r5': baseFileName = 'harem_sehzadeler_mektebi'; break;
+            case 'r6': baseFileName = 'harem_kafes'; break;
+            case 'r7': baseFileName = 'harem_hirka_i_saadet'; break;
+            default: return;
+        }
+
+        // Yeni src adresini oluştur: audio/[lang]/[baseFileName].mp3
+        // Örnek: audio/en/harem_altin_taht.mp3
+        audioElement.src = `audio/${lang}/${baseFileName}.mp3`;
+    });
+
+    // Menü Başlıkları (TOC)
+    document.getElementById('toc1').innerText = t.toc1;
+    document.getElementById('toc2').innerText = t.toc2;
+    document.getElementById('toc3').innerText = t.toc3;
+    document.getElementById('toc4').innerText = t.toc4;
+    document.getElementById('toc5').innerText = t.toc5;
+    document.getElementById('toc6').innerText = t.toc6;
+    document.getElementById('toc7').innerText = t.toc7;
+
+    // Bölüm Başlıkları ve Metinleri
+    document.getElementById('r1-title').innerText = t.r1Title;
+    document.getElementById('r1-text').innerText = t.r1Text;
+    document.getElementById('r2-title').innerText = t.r2Title;
+    document.getElementById('r2-text').innerText = t.r2Text;
+    document.getElementById('r3-title').innerText = t.r3Title;
+    document.getElementById('r3-text').innerText = t.r3Text;
+    document.getElementById('r4-title').innerText = t.r4Title;
+    document.getElementById('r4-text').innerText = t.r4Text;
+    document.getElementById('r5-title').innerText = t.r5Title;
+    document.getElementById('r5-text').innerText = t.r5Text;
+    document.getElementById('r6-title').innerText = t.r6Title;
+    document.getElementById('r6-text').innerText = t.r6Text;
+    document.getElementById('r7-title').innerText = t.r7Title;
+    document.getElementById('r7-text').innerText = t.r7Text;
 }
+
+window.onload = function() {
+    const lang = getLangFromUrl();
+    updateContent(lang);
+};
 </script>
 
 </body>
