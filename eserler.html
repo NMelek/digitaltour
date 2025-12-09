@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="title-tag">Kutsal Emanetler | Topkapı Sarayı</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* Ortak CSS */
+:root {
+    --primary-color: #5d0f1b; /* Koyu Kırmızı/Bordo */
+    --background-light: #ffffff; /* Saf Beyaz */
+    --secondary-bg: #f7f7f7; /* Açık Gri */
+}
+* { box-sizing: border-box; }
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: #333;
+    line-height: 1.7;
+}
+
+/* Responsive Kapsayıcı */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Başlık ve Menü */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 900;
+}
+
+/* İçerik Kutusu */
+.content-box {
+    background: var(--secondary-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* ESER LİSTESİ */
+.relics-toc {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+.relics-toc li a {
+    display: block;
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: opacity 0.3s, transform 0.3s;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+.relics-toc li a:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* ESER BÖLÜMLERİ */
+.relic-section {
+    padding: 30px 0;
+    border-bottom: 1px solid #ddd;
+    scroll-margin-top: 100px; /* Sabit başlığa çarpma sorununu engeller */
+}
+.relic-section h2 {
+    color: var(--primary-color);
+    border-left: 5px solid var(--primary-color);
+    padding-left: 10px;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* RESİM VE METİN DÜZENİ */
+.relic-content {
+    display: flex;
+    flex-wrap: wrap; /* Mobil için alt alta geçiş */
+    gap: 20px;
+    align-items: flex-start;
+}
+.relic-content img {
+    width: 100%;
+    max-width: 400px; /* Maksimum genişlik sabitleme */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+.relic-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* KAYNAKÇA STİLİ */
+.citation {
+    color: var(--primary-color);
+    font-weight: bold;
+    cursor: help;
+    text-decoration: none;
+    vertical-align: super;
+    font-size: 0.8em;
+    padding-left: 3px;
+}
+.citations-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 30px;
+    border-top: 2px solid var(--primary-color);
+    padding-top: 20px;
+}
+.citations-list li {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+.citations-list li a {
+    color: #007bff; /* Mavi link rengi */
+    text-decoration: underline;
+}
+.citations-list li a:hover {
+    color: var(--primary-color);
+}
+
+/* Geri Dön Butonu */
+.back-button {
+    display: block;
+    width: 250px;
+    margin: 40px auto 20px auto;
+    padding: 15px 30px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+.back-button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Mobil Uyum */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    .content-box {
+        padding: 20px;
+    }
+    .relic-content {
+        flex-direction: column; /* Mobil için alt alta */
+        align-items: center;
+    }
+    .relic-content img {
+        max-width: 100%;
+    }
+    .relic-section h2 {
+        font-size: 1.5em;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1 id="page-title">KUTSAL EMANETLER & KOLEKSİYONLAR</h1>
+</header>
+
+<div class="container">
+    <div class="content-box">
+
+        <ul class="relics-toc" id="relics-toc">
+            <li><a href="#eser-1">Hırka-i Saadet</a></li>
+            <li><a href="#eser-2">Sakal-ı Şerif</a></li>
+            <li><a href="#eser-3">Kutsal Kılıçlar</a></li>
+            <li><a href="#eser-4">Hz. Musa'nın Asası</a></li>
+            <li><a href="#eser-5">Padişah Portreleri</a></li>
+            <li><a href="#eser-6">Kaşıkçı Elması</a></li>
+            <li><a href="#eser-7">Çin Porselenleri</a></li>
+        </ul>
+        <section id="eser-1" class="relic-section">
+            <h2 id="r1-title">Hırka-i Saadet (Peygamberimizin Hırkası)</h2>
+            <div class="relic-content">
+                <img id="r1-img" src="hirka_i_saadet.jpg" alt="Hırka-i Saadet">
+                <div class="relic-text">
+                    <p id="r1-text">
+                        Peygamber Efendimiz Hz. Muhammed'in (S.A.V.) hırkası, bu koleksiyonun şüphesiz en değerli parçasıdır. Her Ramazan ayının 15. günü, saray erkanı hırkayı ziyaret etme geleneğini sürdürmüştür. Bu emanet, Yavuz Sultan Selim'in Mısır seferi sonrası İstanbul'a getirilmiştir<span class="citation" id="c-r1-1">[1]</span>. Hırka, özel bir sanduka içinde, gümüş şebekelerle korunmaktadır<span class="citation" id="c-r1-2">[2]</span>.
+                    </p>
+                    <p id="r1-desc">
+                        Hırkanın sergilendiği daire, aynı zamanda Kutsal Emanetler Dairesi'nin merkezini oluşturur. Osmanlı padişahları, buraya büyük bir saygı göstermiş ve dairenin bakımı için özel görevliler (Hırka-i Saadet Ağaları) atamıştır<span class="citation" id="c-r1-3">[3]</span>. Bu uygulama, Osmanlı'nın İslam Halifeliği rolünün en önemli göstergelerinden biridir.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="eser-2" class="relic-section">
+            <h2 id="r2-title">Sakal-ı Şerif (Mübarek Sakal Telleri)</h2>
+            <div class="relic-content">
+                <img id="r2-img" src="sakal_i_serif.jpg" alt="Sakal-ı Şerif">
+                <div class="relic-text">
+                    <p id="r2-text">
+                        Hz. Muhammed'in mübarek sakalından tellerin bulunduğu Sakal-ı Şerifler, Osmanlı sarayında büyük bir saygıyla korunmuştur. Genellikle kristal veya değerli taşlarla süslenmiş küçük kutularda saklanırdı<span class="citation" id="c-r2-1">[4]</span>. Bu emanetler, saray halkı ve bazı özel davetliler için belirli özel günlerde ve törenlerde gösterilmiştir.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="eser-3" class="relic-section">
+            <h2 id="r3-title">Kutsal Kılıçlar (Hz. Davud, Hz. Ali, Hz. Ömer)</h2>
+            <div class="relic-content">
+                <img id="r3-img" src="kutsal_kiliclar.jpg" alt="Kutsal Kılıçlar">
+                <div class="relic-text">
+                    <p id="r3-text">
+                        Dairede, Hz. Davud, Hz. Ali, Hz. Ömer gibi önemli şahsiyetlere ait olduğu rivayet edilen kılıçlar sergilenmektedir. Özellikle Hz. Ali'ye atfedilen Zülfikar kılıcının replikaları, koleksiyonun en dikkat çekici parçalarındandır. Bu kılıçlar, dönemin metal işçiliğini ve manevi derinliğini yansıtır<span class="citation" id="c-r3-1">[5]</span>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="eser-4" class="relic-section">
+            <h2 id="r4-title">Hz. Musa'nın Asası</h2>
+            <div class="relic-content">
+                <img id="r4-img" src="musa_asasi.jpg" alt="Hz. Musa'nın Asası">
+                <div class="relic-text">
+                    <p id="r4-text">
+                        Tarihi kaynaklara göre Hz. Musa'ya atfedilen bu asa, diğer kutsal emanetlerle birlikte İstanbul'a getirilmiştir. Asanın, Firavun'un sihirbazlarına karşı gösterdiği mucizeler, İslam inancında önemli bir yere sahiptir. Asanın korunduğu alan, dairedeki özel bölümlerden biridir<span class="citation" id="c-r4-1">[6]</span>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="eser-5" class="relic-section">
+            <h2 id="r5-title">Padişah Portreleri Koleksiyonu</h2>
+            <div class="relic-content">
+                <img id="r5-img" src="padisah_portreleri.jpg" alt="Padişah Portreleri">
+                <div class="relic-text">
+                    <p id="r5-text">
+                        Farklı dönemlerde yaşamış Osmanlı padişahlarının resmi ve yarı resmi portreleri, sarayın önemli sanat koleksiyonunu oluşturur. Özellikle İtalyan ressamlara yaptırılan portreler, batı sanatının Osmanlı zevkiyle buluştuğu nadir örneklerdir. Bu koleksiyon, hanedan üyelerinin görsel tarihini sunar<span class="citation" id="c-r5-1">[7]</span>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="eser-6" class="relic-section">
+            <h2 id="r6-title">Kaşıkçı Elması</h2>
+            <div class="relic-content">
+                <img id="r6-img" src="kasikci_elmasi.jpg" alt="Kaşıkçı Elması">
+                <div class="relic-text">
+                    <p id="r6-text">
+                        Dünyanın en büyük elmaslarından biri olan Kaşıkçı Elması, sarayın Hazine Dairesi'nde sergilenir. 86 kıratlık bu armut biçimli elmasın çevresi, 49 küçük elmasla süslüdür. Elmasın kökeni ve saraya nasıl girdiği hakkında farklı rivayetler bulunmaktadır, ancak en bilinen hikaye onu bulan kaşıkçıya dayanır<span class="citation" id="c-r6-1">[8]</span>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="eser-7" class="relic-section">
+            <h2 id="r7-title">Çin ve Japon Porselenleri Koleksiyonu</h2>
+            <div class="relic-content">
+                <img id="r7-img" src="cin_porselen.jpg" alt="Çin Porselenleri">
+                <div class="relic-text">
+                    <p id="r7-text">
+                        Topkapı Sarayı, dünyanın en büyük ve en önemli Çin porselenleri koleksiyonlarından birine sahiptir. Ming ve Qing Hanedanlıklarına ait binlerce parça, özellikle saray mutfaklarında kullanılmış ve sergilenmiştir. Bu porselenlerin kalitesi, Osmanlı İmparatorluğu'nun uluslararası ticaret gücünü gösterir<span class="citation" id="c-r7-1">[9]</span>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <hr style="border-top: 1px solid var(--primary-color); margin: 40px 0;">
+
+        <h2 id="citations-title" style="margin-top: 50px; color:var(--primary-color);">Kaynaklar (Bibliyografya)</h2>
+        <ul class="citations-list" id="citations-list">
+            <li id="li-1">[1] **{Kaynak 1: Hırka-i Saadet - Mısır Seferi}** Örn: Name, A. (2018). *The Holy Relics of the Ottoman Sultans*. İstanbul: Tarih Vakfı Yayınları. (s. 45-47). <a href="Lütfen_Gerçek_URL_Ekleyiniz" target="_blank">Gerçek Akademik Kaynak Linki</a></li>
+            <li id="li-2">[2] **{Kaynak 2: Hırka-i Saadet - Koruma}** Örn: Resmi Müze Kitabı, (2022). *Topkapı Sarayı Kutsal Emanetler Bölümü Rehberi*. İstanbul: Kültür ve Turizm Bakanlığı. (s. 15). <a href="Lütfen_Gerçek_URL_Ekleyiniz" target="_blank">Gerçek Akademik Kaynak Linki</a></li>
+            <li id="li-3">[3] **{Kaynak 3: Hırka-i Saadet - Görevliler}** Örn: Yılmaz, B. (2020). *Topkapı Sarayı Kutsal Emanetler Dairesi İncelemesi*. Akademik Tarih Dergisi, Cilt 5(2), 112-135. <a href="Lütfen_Gerçek_URL_Ekleyiniz" target="_blank">Gerçek Akademik Kaynak Linki</a></li>
+            <li id="li-4">[4] **{Kaynak 4: Sakal-ı Şerif}** Örn: Name, C. (2019). *Osmanlı Sarayında Sakal-ı Şerif\'in Önemi*. Tarih Araştırmaları Dergisi, Sayı 10. <a href="Lütfen_Gerçek_URL_Ekleyiniz" target="_blank">Gerçek Akademik Kaynak Linki</a></li>
+            <li id="li-5">[5] **{Kaynak 5: Kutsal Kılıçlar}** Örn: Demir, F. (2021). *İslam Tarihinden Kılıçlar ve Topkapı Koleksiyonu*. Sanat Tarihi Yıllığı, Sayı 12. <a href="Lütfen_Gerçek_URL_Ekleyiniz" target="_blank">Gerçek Akademik Kaynak Linki</a></li>
+            <li id="li-6">[6] **{Kaynak 6: Hz. Musa'nın Asası}** Örn: Gezer, M. (2017). *Kutsal Emanetlerin İstanbul\'a Gelişi*. İstanbul Üniversitesi Yayınları. <a href="Lütfen_Gerçek_URL_Ekleyiniz" target="_blank">Gerçek Akademik Kaynak Linki</a></li>
+            <li id="li-7">[7] **{Kaynak 7: Padişah Portreleri}** Örn: Anonim. (2023). *Topkapı Sarayı Koleksiyonları Resmi Katalogu*. (Bölüm: Padişah Portreleri). <a href="Lütfen_Gerçek_URL_Ekleyiniz" target="_blank">Gerçek Akademik Kaynak Linki</a></li>
+            <li id="li-8">[8] **{Kaynak 8: Kaşıkçı Elması}** Örn: Kaya, G. (2016). *Dünya Tarihindeki Büyük Elmaslar*. Müze Dergisi, Sayı 5. <a href="Lütfen_Gerçek_URL_Ekleyiniz" target="_blank">Gerçek Akademik Kaynak Linki</a></li>
+            <li id="li-9">[9] **{Kaynak 9: Çin Porselenleri}** Örn: Öz, T. (2015). *Topkapı Sarayı Çin ve Japon Porselenleri*. Kültür Yayınları. <a href="Lütfen_Gerçek_URL_Ekleyiniz" target="_blank">Gerçek Akademik Kaynak Linki</a></li>
+        </ul>
+        </div>
+
+    <a href="index.html" class="back-button" id="back-btn">← Bölümler Menüsüne Geri Dön</a>
+</div>
+
+
+<script>
+// Çeviri Verisi (Eserler)
+// Lütfen bu çevirileri, İngilizce, Rusça ve Arapça için de 7 eser metnine uygun olarak genişletin.
+const translations = {
+    'tr': {
+        titleTag: 'Kutsal Emanetler | Topkapı Sarayı',
+        pageTitle: 'KUTSAL EMANETLER & KOLEKSİYONLAR',
+        toc1: 'Hırka-i Saadet', toc2: 'Sakal-ı Şerif', toc3: 'Kutsal Kılıçlar', toc4: 'Hz. Musa\'nın Asası', toc5: 'Padişah Portreleri', toc6: 'Kaşıkçı Elması', toc7: 'Çin Porselenleri',
+        r1Title: 'Hırka-i Saadet (Peygamberimizin Hırkası)',
+        r1Text: 'Peygamber Efendimiz Hz. Muhammed\'in (S.A.V.) hırkası, bu koleksiyonun şüphesiz en değerli parçasıdır. Her Ramazan ayının 15. günü, saray erkanı hırkayı ziyaret etme geleneğini sürdürmüştür. Bu emanet, Yavuz Sultan Selim\'in Mısır seferi sonrası İstanbul\'a getirilmiştir.',
+        r1Desc: 'Hırkanın sergilendiği daire, aynı zamanda Kutsal Emanetler Dairesi\'nin merkezini oluşturur. Osmanlı padişahları, buraya büyük bir saygı göstermiş ve dairenin bakımı için özel görevliler (Hırka-i Saadet Ağaları) atamıştır.',
+        r2Title: 'Sakal-ı Şerif (Mübarek Sakal Telleri)',
+        r2Text: 'Hz. Muhammed\'in mübarek sakalından tellerin bulunduğu Sakal-ı Şerifler, Osmanlı sarayında büyük bir saygıyla korunmuştur. Genellikle kristal veya değerli taşlarla süslenmiş küçük kutularda saklanırdı. Bu emanetler, saray halkı ve bazı özel davetliler için belirli özel günlerde ve törenlerde gösterilmiştir.',
+        r3Title: 'Kutsal Kılıçlar (Hz. Davud, Hz. Ali, Hz. Ömer)',
+        r3Text: 'Dairede, Hz. Davud, Hz. Ali, Hz. Ömer gibi önemli şahsiyetlere ait olduğu rivayet edilen kılıçlar sergilenmektedir. Özellikle Hz. Ali\'ye atfedilen Zülfikar kılıcının replikaları, koleksiyonun en dikkat çekici parçalarındandır. Bu kılıçlar, dönemin metal işçiliğini ve manevi derinliğini yansıtır.',
+        r4Title: 'Hz. Musa\'nın Asası',
+        r4Text: 'Tarihi kaynaklara göre Hz. Musa\'ya atfedilen bu asa, diğer kutsal emanetlerle birlikte İstanbul\'a getirilmiştir. Asanın, Firavun\'un sihirbazlarına karşı gösterdiği mucizeler, İslam inancında önemli bir yere sahiptir. Asanın korunduğu alan, dairedeki özel bölümlerden biridir.',
+        r5Title: 'Padişah Portreleri Koleksiyonu',
+        r5Text: 'Farklı dönemlerde yaşamış Osmanlı padişahlarının resmi ve yarı resmi portreleri, sarayın önemli sanat koleksiyonunu oluşturur. Özellikle İtalyan ressamlara yaptırılan portreler, batı sanatının Osmanlı zevkiyle buluştuğu nadir örneklerdir. Bu koleksiyon, hanedan üyelerinin görsel tarihini sunar.',
+        r6Title: 'Kaşıkçı Elması',
+        r6Text: 'Dünyanın en büyük elmaslarından biri olan Kaşıkçı Elması, sarayın Hazine Dairesi\'nde sergilenir. 86 kıratlık bu armut biçimli elmasın çevresi, 49 küçük elmasla süslüdür. Elmasın kökeni ve saraya nasıl girdiği hakkında farklı rivayetler bulunmaktadır, ancak en bilinen hikaye onu bulan kaşıkçıya dayanır.',
+        r7Title: 'Çin ve Japon Porselenleri Koleksiyonu',
+        r7Text: 'Topkapı Sarayı, dünyanın en büyük ve en önemli Çin porselenleri koleksiyonlarından birine sahiptir. Ming ve Qing Hanedanlıklarına ait binlerce parça, özellikle saray mutfaklarında kullanılmış ve sergilenmiştir. Bu porselenlerin kalitesi, Osmanlı İmparatorluğu\'nun uluslararası ticaret gücünü gösterir.',
+        citationsTitle: 'Kaynaklar (Bibliyografya)',
+        backBtn: '← Bölümler Menüsüne Geri Dön'
+    },
+    'en': {
+        titleTag: 'Holy Relics | Topkapi Palace',
+        pageTitle: 'HOLY RELICS & COLLECTIONS',
+        toc1: 'Prophet\'s Cloak', toc2: 'Holy Beard Hair', toc3: 'Holy Swords', toc4: 'Staff of Moses', toc5: 'Sultan Portraits', toc6: 'Spoonmaker\'s Diamond', toc7: 'Chinese Porcelains',
+        r1Title: 'Hırka-i Saadet (The Prophet\'s Cloak)',
+        r1Text: 'The cloak of the Prophet Muhammad (PBUH) is undoubtedly the most valuable piece in this collection. On the 15th day of every Ramadan, the palace dignitaries maintained the tradition of visiting the cloak. This relic was brought to Istanbul after Sultan Selim I\'s campaign in Egypt.',
+        r1Desc: 'The chamber where the cloak is exhibited also forms the center of the Holy Relics Chamber. Ottoman sultans showed great respect here and appointed special officials (Hırka-i Saadet Ağaları) for its maintenance.',
+        r2Title: 'Sakal-ı Şerif (Holy Beard Hairs)',
+        r2Text: 'The Sakal-ı Şerif, containing strands from the blessed beard of Prophet Muhammad, has been preserved with great reverence in the Ottoman Palace. They were usually kept in small boxes adorned with crystal or precious stones. These relics were displayed for the palace residents and certain special guests during specific ceremonies.',
+        r3Title: 'Holy Swords (Prophet David, Ali, Omar)',
+        r3Text: 'The Chamber exhibits swords believed to belong to important figures such as Prophet David, Ali, and Omar. Replicas of the Zulfikar sword attributed to Ali are among the most striking pieces of the collection. These swords reflect the metal craftsmanship and spiritual depth of the era.',
+        r4Title: 'The Staff of Moses (Hz. Musa\'s Asa)',
+        r4Text: 'According to historical sources, this staff, attributed to Prophet Moses, was brought to Istanbul along with other holy relics. The miracles the staff performed against the Pharaoh\'s magicians hold an important place in the Islamic faith. The area where the staff is kept is one of the special sections in the chamber.',
+        r5Title: 'Sultan Portrait Collection',
+        r5Text: 'Official and semi-official portraits of Ottoman sultans from various periods form the palace\'s important art collection. Portraits commissioned from Italian painters, in particular, are rare examples where Western art meets Ottoman taste. This collection presents the visual history of the dynasty members.',
+        r6Title: 'The Spoonmaker\'s Diamond (Kaşıkçı Elması)',
+        r6Text: 'The Spoonmaker\'s Diamond, one of the world\'s largest diamonds, is exhibited in the Treasury section of the palace. This 86-carat, pear-shaped diamond is surrounded by 49 smaller diamonds. There are various legends about the diamond\'s origin and how it entered the palace, but the most famous one relates to the spoonmaker who found it.',
+        r7Title: 'Chinese and Japanese Porcelain Collection',
+        r7Text: 'Topkapı Palace possesses one of the world\'s largest and most important collections of Chinese porcelains. Thousands of pieces belonging to the Ming and Qing Dynasties were used and exhibited, especially in the palace kitchens. The quality of these porcelains demonstrates the international trade power of the Ottoman Empire.',
+        citationsTitle: 'Sources (Bibliography)',
+        backBtn: '← Back to Sections Menu'
+    },
+    // Lütfen RU ve AR çevirilerini buraya ekleyiniz
+    'ru': {
+        titleTag: 'Священные Реликвии | Дворец Топкапы',
+        pageTitle: 'СВЯЩЕННЫЕ РЕЛИКВИИ И КОЛЛЕКЦИИ',
+        toc1: 'Плащ Пророка', toc2: 'Волос Священной Бороды', toc3: 'Священные Мечи', toc4: 'Посох Моисея', toc5: 'Портреты Султанов', toc6: 'Алмаз Ложечника', toc7: 'Китайский Фарфор',
+        r1Title: 'Хырка-и Саадет (Плащ Пророка)',
+        r1Text: 'Плащ Пророка Мухаммеда (мир ему) - несомненно, самая ценная часть этой коллекции. Каждый 15-й день Рамадана придворные сохраняли традицию посещения плаща. Эта реликвия была доставлена в Стамбул после кампании султана Селима I в Египте.',
+        r1Desc: 'Палата, где выставлен плащ, также образует центр Палаты Священных Реликвий. Османские султаны проявляли здесь большое уважение и назначали специальных чиновников для ее обслуживания.',
+        r2Title: 'Сакал-и Шериф (Волос Священной Бороды)',
+        r2Text: 'Сакал-и Шериф, содержащий пряди из благословенной бороды Пророка Мухаммеда, хранился с большим почтением в Османском дворце. Обычно их хранили в маленьких коробках, украшенных кристаллами или драгоценными камнями. Эти реликвии демонстрировались жителям дворца и некоторым специальным гостям во время определенных церемоний.',
+        r3Title: 'Священные Мечи (Пророк Давид, Али, Омар)',
+        r3Text: 'В Палате выставлены мечи, предположительно принадлежавшие важным личностям, таким как Пророк Давид, Али и Омар. Реплики меча Зульфикара, приписываемого Али, являются одними из самых поразительных экспонатов коллекции. Эти мечи отражают мастерство обработки металла и духовную глубину той эпохи.',
+        r4Title: 'Посох Моисея (Hz. Musa\'nın Asası)',
+        r4Text: 'Согласно историческим источникам, этот посох, приписываемый Пророку Моисею, был доставлен в Стамбул вместе с другими священными реликвиями. Чудеса, которые посох совершил против магов фараона, занимают важное место в исламской вере. Место, где хранится посох, является одним из специальных разделов в Палате.',
+        r5Title: 'Коллекция Портретов Султанов',
+        r5Text: 'Официальные и полуофициальные портреты османских султанов разных периодов составляют важную художественную коллекцию дворца. Портреты, заказанные итальянским художникам, в частности, являются редкими примерами, где западное искусство сочетается с османским вкусом. Эта коллекция представляет визуальную историю членов династии.',
+        r6Title: 'Алмаз Ложечника (Кашыкчы Эльмасы)',
+        r6Text: 'Алмаз Ложечника, один из крупнейших алмазов в мире, выставлен в Казначейском отделе дворца. Этот грушевидный алмаз весом 86 карат окружен 49 меньшими алмазами. Существуют различные легенды о происхождении алмаза и о том, как он попал во дворец, но самая известная связана с ложечником, который его нашел.',
+        r7Title: 'Коллекция Китайского и Японского Фарфора',
+        r7Text: 'Дворец Топкапы обладает одной из крупнейших и важнейших в мире коллекций китайского фарфора. Тысячи предметов, принадлежащих династиям Мин и Цин, использовались и выставлялись, особенно на дворцовых кухнях. Качество этого фарфора демонстрирует международную торговую мощь Османской империи.',
+        citationsTitle: 'Источники (Библиография)',
+        backBtn: '← Вернуться в Меню Разделов'
+    },
+    'ar': {
+        titleTag: 'الآثار المقدسة | قصر طوب قابي',
+        pageTitle: 'الآثار المقدسة والمجموعات',
+        toc1: 'الخرقة الشريفة', toc2: 'شعر اللحية الشريفة', toc3: 'السيوف المقدسة', toc4: 'عصا موسى', toc5: 'صور السلاطين', toc6: 'ماسة صانع الملاعق', toc7: 'خزف صيني',
+        r1Title: 'الخرقة الشريفة (عباءة النبي)',
+        r1Text: 'إن عباءة النبي محمد (صلى الله عليه وسلم) هي بلا شك القطعة الأكثر قيمة في هذه المجموعة. في اليوم الخامس عشر من كل رمضان، حافظ رجال القصر على تقليد زيارة العباءة. تم جلب هذه الأثر إلى إسطنبول بعد حملة السلطان سليم الأول على مصر.',
+        r1Desc: 'تشكل الحجرة التي تعرض فيها العباءة أيضًا مركز حجرة الآثار المقدسة. أظهر السلاطين العثمانيون احترامًا كبيرًا للمكان وعينوا مسؤولين خاصين لصيانتها.',
+        r2Title: 'سكل الشريف (شعر اللحية الشريفة)',
+        r2Text: 'تم الحفاظ على سكل الشريف، الذي يحتوي على خصل من لحية النبي محمد المباركة، بتقدير كبير في القصر العثماني. كانت تحفظ عادة في صناديق صغيرة مزينة بالكريستال أو الأحجار الكريمة. كانت هذه الآثار تعرض لسكان القصر وبعض الضيوف المميزين خلال مراسم خاصة.',
+        r3Title: 'السيوف المقدسة (داود، علي، عمر)',
+        r3Text: 'تعرض الحجرة سيوفاً يُعتقد أنها تخص شخصيات مهمة مثل النبي داود وعلي وعمر. تعتبر نسخ سيف ذو الفقار المنسوب إلى علي من أبرز القطع في المجموعة. تعكس هذه السيوف براعة الحرف المعدنية والعمق الروحي لتلك الحقبة.',
+        r4Title: 'عصا موسى (Hz. Musa\'nın Asası)',
+        r4Text: 'وفقًا للمصادر التاريخية، تم جلب هذه العصا المنسوبة إلى النبي موسى إلى إسطنبول مع الآثار المقدسة الأخرى. تحتل المعجزات التي أظهرتها العصا ضد سحرة فرعون مكانة مهمة في العقيدة الإسلامية. المنطقة التي يتم فيها الاحتفاظ بالعصا هي أحد الأقسام الخاصة في الحجرة.',
+        r5Title: 'مجموعة صور السلاطين',
+        r5Text: 'تشكل الصور الرسمية وشبه الرسمية للسلاطين العثمانيين من فترات مختلفة مجموعة فنية مهمة للقصر. تعتبر الصور التي كلف بها الرسامون الإيطاليون، على وجه الخصوص، أمثلة نادرة يلتقي فيها الفن الغربي بالذوق العثماني. تقدم هذه المجموعة التاريخ البصري لأعضاء السلالة.',
+        r6Title: 'ماسة صانع الملاعق (Kaşıkçı Elması)',
+        r6Text: 'تُعرض ماسة صانع الملاعق، وهي واحدة من أكبر الماسات في العالم، في قسم الخزانة بالقصر. هذه الماسة التي على شكل كمثرى تزن 86 قيراطًا محاطة بـ 49 ماسة أصغر. هناك أساطير مختلفة حول أصل الماسة وكيف دخلت القصر، ولكن القصة الأكثر شهرة تتعلق بصانع الملاعق الذي وجدها.',
+        r7Title: 'مجموعة الخزف الصيني والياباني',
+        r7Text: 'يمتلك قصر طوب قابي واحدة من أكبر وأهم مجموعات الخزف الصيني في العالم. تم استخدام وعرض الآلاف من القطع التي تنتمي إلى سلالتي مينغ وتشينغ، خاصة في مطابخ القصر. تشير جودة هذا الخزف إلى قوة التجارة الدولية للإمبراطورية العثمانية.',
+        citationsTitle: 'المصادر (المراجع)',
+        backBtn: '← العودة إلى قائمة الأقسام'
+    }
+};
+
+
+// Fonksiyon: URL'den dil parametresini okuma
+function getLangFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('lang') || 'tr'; // Varsayılan dil 'tr'
+}
+
+// Fonksiyon: İçeriği çevirme
+function updateContent(lang) {
+    const t = translations[lang];
+    if (!t) return;
+
+    // Menü Başlıkları
+    document.getElementById('title-tag').innerText = t.titleTag;
+    document.getElementById('page-title').innerText = t.pageTitle;
+    document.querySelector('a[href="#eser-1"]').innerText = t.toc1;
+    document.querySelector('a[href="#eser-2"]').innerText = t.toc2;
+    document.querySelector('a[href="#eser-3"]').innerText = t.toc3;
+    document.querySelector('a[href="#eser-4"]').innerText = t.toc4;
+    document.querySelector('a[href="#eser-5"]').innerText = t.toc5;
+    document.querySelector('a[href="#eser-6"]').innerText = t.toc6;
+    document.querySelector('a[href="#eser-7"]').innerText = t.toc7;
+
+
+    // Eser Başlıkları ve Metinleri
+    document.getElementById('r1-title').innerText = t.r1Title;
+    document.getElementById('r1-text').innerHTML = t.r1Text + '<span class="citation" id="c-r1-1">[1]</span>';
+    document.getElementById('r1-desc').innerHTML = t.r1Desc + '<span class="citation" id="c-r1-2">[2]</span>' + '<span class="citation" id="c-r1-3">[3]</span>';
+
+    document.getElementById('r2-title').innerText = t.r2Title;
+    document.getElementById('r2-text').innerHTML = t.r2Text + '<span class="citation" id="c-r2-1">[4]</span>';
+
+    document.getElementById('r3-title').innerText = t.r3Title;
+    document.getElementById('r3-text').innerHTML = t.r3Text + '<span class="citation" id="c-r3-1">[5]</span>';
+
+    document.getElementById('r4-title').innerText = t.r4Title;
+    document.getElementById('r4-text').innerHTML = t.r4Text + '<span class="citation" id="c-r4-1">[6]</span>';
+
+    document.getElementById('r5-title').innerText = t.r5Title;
+    document.getElementById('r5-text').innerHTML = t.r5Text + '<span class="citation" id="c-r5-1">[7]</span>';
+
+    document.getElementById('r6-title').innerText = t.r6Title;
+    document.getElementById('r6-text').innerHTML = t.r6Text + '<span class="citation" id="c-r6-1">[8]</span>';
+
+    document.getElementById('r7-title').innerText = t.r7Title;
+    document.getElementById('r7-text').innerHTML = t.r7Text + '<span class="citation" id="c-r7-1">[9]</span>';
+
+
+    // Genel
+    document.getElementById('citations-title').innerText = t.citationsTitle;
+    document.getElementById('back-btn').innerText = t.backBtn;
+}
+
+// Sayfa yüklendiğinde çeviriyi başlat
+window.onload = function() {
+    const lang = getLangFromUrl();
+    updateContent(lang);
+};
+</script>
+
+</body>
+</html>
