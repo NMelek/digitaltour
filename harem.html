@@ -94,15 +94,15 @@ header h1 {
     font-size: 2em;
 }
 
-/* RESİM VE METİN DÜZENİ - GÜNCELLENDİ */
+/* RESİM VE METİN DÜZENİ */
 .relic-content {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     align-items: flex-start;
-    flex-direction: column; /* Ses ve resim/metin alt alta gelsin diye */
+    flex-direction: column;
 }
-/* Resim ve metni bir arada tutan kapsayıcı (yeni) */
+/* Resim ve metni bir arada tutan kapsayıcı */
 .media-and-text-wrapper {
     flex-direction: row;
     display: flex;
@@ -123,7 +123,7 @@ header h1 {
     min-width: 300px;
 }
 
-/* YENİ SES OYNATICI STİLİ */
+/* SES OYNATICI STİLİ */
 .audio-container {
     width: 100%;
     margin-bottom: 20px;
@@ -159,7 +159,7 @@ header h1 {
     background-color: var(--primary-color);
 }
 
-/* Mobil Uyum - GÜNCELLENDİ */
+/* Mobil Uyum */
 @media (max-width: 768px) {
     header h1 {
         font-size: 1.8em;
@@ -167,7 +167,7 @@ header h1 {
     .content-box {
         padding: 20px;
     }
-    .media-and-text-wrapper { /* Sadece görsel ve metin için flex yönünü değiştiriyoruz */
+    .media-and-text-wrapper {
         flex-direction: column;
         align-items: center;
     }
@@ -378,21 +378,21 @@ const translations = {
         r6Title: 'Kafes (Şehzade Daireleri)', r6Text: 'Topkapı Sarayı\'nda uygulanan Kafes Sistemi, Osmanlı İmparatorluğu\'nda yüzyıllardır süren kardeş katli geleneğini sona erdirmek amacıyla I. Ahmed döneminde (1603) kabul edilen Ekberiyet ve Erşediyet ilkesinin bir sonucudur. Bu sistemle birlikte, tahta aday olan şehzadeler (padişahın oğulları ve erkek akrabaları), sarayın dördüncü avlusundaki "Şehzadegân Dairesi" veya "Şimşirlik Kafesi" adı verilen bölümlerde dış dünyadan izole bir şekilde tutulmaya başlanmıştır. Bu daire, etrafı şimşir ağaçlarıyla çevrili, demir kapılı ve sürekli hadım ağaların nöbet tuttuğu, adeta küçük bir kale gibi tasarlanmış bir yapıdır. Şehzadelerin tek tesellisi, kendilerine hizmet eden cariyeler olsa da, hanedan soyunun kontrolsüz çoğalmasını engellemek için çocuk sahibi olmaları yasaktı ve kazara hamile kalan cariyelerin çocukları düşürülürdü. Kafes sistemi, siyasi infazları durdurarak hanedan üyelerinin hayatını korusa da, uzun yıllar (örneğin III. Osman 51 yıl) izole kalan şehzadelerin ruhi dengelerini bozmuş ve tecrübesiz, devlet işlerinden uzak padişahların tahta çıkmasına neden olmuştur.',
         r7Title: 'Hırka-i Saadet', r7Text: 'Hırka-i Saadet, makaleye göre, öncelikle Hz. Peygamber\'e ait olan ve Topkapı Sarayı\'ndaki Mukaddes Emanetler arasında mümtaz bir yere sahip olan teberrüklerden biridir. Osmanlılar bu tür emanetleri birer bereket, şifa veya teberrük vesilesi olarak kabul etmiş ve Hz. Peygamber mirasına bir hürmet ve hizmet vesilesi görmüşlerdir. Kesin olarak bilinen şey, Hırka-i Saadet\'in 1522 yılındaki Rodos seferine Kanuni Sultan Süleyman ile birlikte götürüldüğüdür. Hatta dönemin kaynakları, bu emanetin sefer sırasında cevahirle süslü altın bir kafes içinde yeşil ile örtülmüş olarak taşındığını belirtir. Padişahlar ğazâ ve sefere çıkacakları zaman, bu kıymetli sandıkçayı özel bir arabaya yükletip yanlarına alarak fethin ve zaferin o vesile ile kazanılacağını inanırlardı. Özellikle I. Ahmed devrinde, hırkanın büyük bir ihtiramla karşılandığı ve süslü bohçalara sarılı bir sandık içinde muhafaza edildiği yazılmıştır. Sultan I. Ahmed\'in, senenin mübarek günlerinde "teberrük kastıyla" hırkayı bizzat eliyle yıkadığı ve temizlenen suyu devlet erkanına dağıttığı da kaydedilen teamüller arasındadır.',
         backBtn: '← Harem, Bahçe, Eserler Menüsüne Geri Dön',
-        audioTitle: 'Bölüm Anlatımını Dinle' // YENİ: Ses başlığı
+        audioTitle: 'Bölüm Anlatımını Dinle'
     },
     'en': {
         titleTag: 'Harem Sections | Topkapi Palace',
         pageTitle: 'TOPKAPI PALACE HAREM SECTIONS',
         toc1: 'Golden Throne', toc2: 'Courtyard of Concubines', toc3: 'Valide Sultan\'s Apartments', toc4: 'Imperial Bath', toc5: 'School of Princes', toc6: 'The Cage (Kafes)', toc7: 'The Holy Mantle (Hırka-i Saadet)',
-        r1Title: 'Golden Throne', r1Text: 'The Golden Throne (Bayram Tahtı) served as a central symbol of Ottoman power during stately ceremonies, particularly during religious holidays, where the Sultan received congratulations. This magnificent piece has a wooden frame completely covered with 250 kilograms of pure gold plates and is adorned with 954 zircons and other precious stones, reflecting the absolute power and wealth of the empire with refined artistry. Image URL: images/harem_altin_taht.jpg',
-        r2Title: 'Courtyard of the Concubines', r2Text: 'The Courtyard of the Concubines is the central courtyard in the Harem, housing the largest population and surrounded by the dormitories of the lower-ranking women (concubines and novices). This area was the main spine where female servants lived, received strict education, and performed their duties. The complex includes the Concubines’ Bath and the Concubines’ Hospital, emphasizing its function as the hub of service and daily life within the isolated world of the Harem. Image URL: images/harem_cariyeler_tasligi.jpg',
-        r3Title: 'The Valide Sultan\'s Apartments', r3Text: 'The Valide Sultan’s Apartments constitute the most significant and spacious section of the Topkapı Palace Harem, serving as the residential and administrative center for the Sultan’s mother, the most powerful female figure in the empire. Her authority extended to appointments and influence over the Sultan. The apartment\'s unparalleled architectural splendor, featuring the most elaborate tiles and mother-of-pearl inlays, reflected the Valide Sultan’s supreme position. It was a crucial center where the behind-the-scenes power and politics of the Ottoman Empire were orchestrated. Image URL: images/harem_valide_sultan_dairesi.jpg',
-        r4Title: 'The Imperial Bath (Hünkar Hamamı)', r4Text: 'The Imperial Bath within the Topkapı Palace Harem was less a private washing area and more a place of political and ceremonial importance. Documented sources indicate that it reflected the rich classical Ottoman style, especially under Murad III and the Valide Sultans. It was co-located with the Valide Sultan’s Bath and shared a single heating furnace, demonstrating efficient Ottoman bath architecture. The bathing area in the *sıcaklık* (hot room) was separated by a gilded cage against assassination attempts, highlighting security concerns. Its central location, opposite the Imperial Bedroom, underscores its hierarchical significance. Image URL: images/harem_hunkar_hamami.jpg',
-        r5Title: 'The Princes\' School', r5Text: 'The Şehzadegân Mektebi (Princes’ School) at Topkapı Palace was a highly structured educational institution designed to prepare dynastic members for future state duties. Princes were educated through a graded curriculum that included traditional and modern knowledge, such as Arabic grammar, ethics (Mecmûu\'l-âdâb), advanced mathematics, geometry, and even Western languages like French. After the proclamation of the Second Constitutional Era and especially following the deposition of Abdülhamid II, the school was closed. Princes were subsequently educated in public schools or sent to European institutions like the Trezyanom in Vienna, marking the empire\'s definitive steps towards modernizing and standardizing the education of its royal members. Image URL: images/harem_sehzadeler_mektebi.jpg',
-        r6Title: 'The Cage (Kafes)', r6Text: 'The Kafes System, implemented during the reign of Ahmed I (1603) following the principle of *Ekberiyet ve Erşediyet* (seniority and sound mind), was introduced to end centuries of fratricide. Princes were isolated in the "Şimşirlik Kafesi" within the palace\'s fourth courtyard. This structure was a virtual fortress, guarded by eunuchs, where princes lived in luxury but were cut off from the outside world. While the system protected their lives, it prohibited them from having children and often resulted in isolated princes, like Osman III (51 years), who were mentally unstable or inexperienced when they ascended the throne, posing new problems for the Ottoman state. Image URL: images/harem_kafes.jpg',
-        r7Title: 'The Holy Mantle (Hırka-i Saadet)', r7Text: 'According to the article, the Hırka-i Saadet (Holy Mantle) is a highly esteemed relic belonging to the Prophet Muhammad and holds a preeminent place among the Sacred Relics in Topkapı Palace. The Ottomans regarded such relics as a means of blessing, healing, and showing profound respect for the Prophet\'s legacy. It is confirmed that the Holy Mantle was carried by Süleyman the Magnificent during the Rhodes campaign in 1522, transported in a gold cage adorned with jewels. Sultans took the precious casket with them on campaigns, believing it would ensure victory. During the reign of Ahmed I, the Mantle was treated with great reverence; the Sultan personally washed it on holy days for blessings, distributing the cleansed water to state officials. Image URL: images/harem_hirka_i_saadet.jpg',
+        r1Title: 'Golden Throne', r1Text: 'The Golden Throne (Bayram Tahtı) served as a central symbol of Ottoman power during stately ceremonies, particularly during religious holidays, where the Sultan received congratulations. This magnificent piece has a wooden frame completely covered with 250 kilograms of pure gold plates and is adorned with 954 zircons and other precious stones, reflecting the absolute power and wealth of the empire with refined artistry.',
+        r2Title: 'Courtyard of the Concubines', r2Text: 'The Courtyard of the Concubines is the central courtyard in the Harem, housing the largest population and surrounded by the dormitories of the lower-ranking women (concubines and novices). This area was the main spine where female servants lived, received strict education, and performed their duties. The complex includes the Concubines’ Bath and the Concubines’ Hospital, emphasizing its function as the hub of service and daily life within the isolated world of the Harem.',
+        r3Title: 'The Valide Sultan\'s Apartments', r3Text: 'The Valide Sultan’s Apartments constitute the most significant and spacious section of the Topkapı Palace Harem, serving as the residential and administrative center for the Sultan’s mother, the most powerful female figure in the empire. Her authority extended to appointments and influence over the Sultan. The apartment\'s unparalleled architectural splendor, featuring the most elaborate tiles and mother-of-pearl inlays, reflected the Valide Sultan’s supreme position. It was a crucial center where the behind-the-scenes power and politics of the Ottoman Empire were orchestrated.',
+        r4Title: 'The Imperial Bath (Hünkar Hamamı)', r4Text: 'The Imperial Bath within the Topkapı Palace Harem was less a private washing area and more a place of political and ceremonial importance. Documented sources indicate that it reflected the rich classical Ottoman style, especially under Murad III and the Valide Sultans. It was co-located with the Valide Sultan’s Bath and shared a single heating furnace, demonstrating efficient Ottoman bath architecture. The bathing area in the *sıcaklık* (hot room) was separated by a gilded cage against assassination attempts, highlighting security concerns. Its central location, opposite the Imperial Bedroom, underscores its hierarchical significance.',
+        r5Title: 'The Princes\' School', r5Text: 'The Şehzadegân Mektebi (Princes’ School) at Topkapı Palace was a highly structured educational institution designed to prepare dynastic members for future state duties. Princes were educated through a graded curriculum that included traditional and modern knowledge, such as Arabic grammar, ethics (Mecmûu\'l-âdâb), advanced mathematics, geometry, and even Western languages like French. After the proclamation of the Second Constitutional Era and especially following the deposition of Abdülhamid II, the school was closed. Princes were subsequently educated in public schools or sent to European institutions like the Trezyanom in Vienna, marking the empire\'s definitive steps towards modernizing and standardizing the education of its royal members.',
+        r6Title: 'The Cage (Kafes)', r6Text: 'The Kafes System, implemented during the reign of Ahmed I (1603) following the principle of *Ekberiyet ve Erşediyet* (seniority and sound mind), was introduced to end centuries of fratricide. Princes were isolated in the "Şimşirlik Kafesi" within the palace\'s fourth courtyard. This structure was a virtual fortress, guarded by eunuchs, where princes lived in luxury but were cut off from the outside world. While the system protected their lives, it prohibited them from having children and often resulted in isolated princes, like Osman III (51 years), who were mentally unstable or inexperienced when they ascended the throne, posing new problems for the Ottoman state.',
+        r7Title: 'The Holy Mantle (Hırka-i Saadet)', r7Text: 'According to the article, the Hırka-i Saadet (Holy Mantle) is a highly esteemed relic belonging to the Prophet Muhammad and holds a preeminent place among the Sacred Relics in Topkapı Palace. The Ottomans regarded such relics as a means of blessing, healing, and showing profound respect for the Prophet\'s legacy. It is confirmed that the Holy Mantle was carried by Süleyman the Magnificent during the Rhodes campaign in 1522, transported in a gold cage adorned with jewels. Sultans took the precious casket with them on campaigns, believing it would ensure victory. During the reign of Ahmed I, the Mantle was treated with great reverence; the Sultan personally washed it on holy days for blessings, distributing the cleansed water to state officials.',
         backBtn: '← Back to Harem, Gardens, Artifacts Menu',
-        audioTitle: 'Listen to the Section Narration' // YENİ: Ses başlığı
+        audioTitle: 'Listen to the Section Narration'
     },
     'ru': {
         titleTag: 'Разделы Гарема | Дворец Топкапы',
@@ -401,26 +401,26 @@ const translations = {
         r1Title: 'Золотой Трон', r1Text: 'Золотой Трон (Байрам Тахты) служил центральным символом османской власти во время торжественных церемоний, особенно в религиозные праздники, когда Султан принимал поздравления. Эта великолепная вещь имеет деревянный каркас, полностью покрытый 250 килограммами чистых золотых пластин и украшенный 954 цирконами и другими драгоценными камнями, отражая абсолютную власть и богатство империи с изысканным искусством.',
         r2Title: 'Двор Наложниц', r2Text: 'Двор Наложниц - это центральный двор в Гареме, где проживало самое большое население и который был окружен общежитиями для женщин низшего ранга (наложниц и новичков). Эта зона была главной артерией, где жили, получали строгое образование и выполняли свои обязанности женщины-служащие. Комплекс включает Баню Наложниц и Больницу Наложниц, подчеркивая его функцию как центра обслуживания и повседневной жизни в изолированном мире Гарема.',
         r3Title: 'Апартаменты Валиде Султан', r3Text: 'Апартаменты Валиде Султан представляют собой самую значительную и просторную часть Гарема дворца Топкапы, служащую жилым и административным центром для матери Султана, самой могущественной женской фигуры в империи. Ее авторитет распространялся на назначения и влияние на Султана. Несравненное архитектурное великолепие апартаментов, украшенных самой изысканной плиткой и перламутровыми инкрустациями, отражало высшее положение Валиде Султан. Это был ключевой центр, где осуществлялась закулисная власть и политика Османской империи.',
-        r4Title: 'Императорская Баня (Хюнкар Хамамы)', r4Text: 'Императорская Баня в Гареме дворца Топкапы была не столько частной зоной для мытья, сколько местом политической и церемониальной важности. Документированные источники указывают, что она отражала богатый классический османский стиль, особенно при Мураде III и Валиде Султан. Она располагалась рядом с Баней Валиде Султан и питалась от одной печи, демонстрируя эффективную архитектуру турецких бань. Зона для мытья в *сыджаклык* (горячей комнате) была отделена позолоченной клеткой от попыток убийства, подчеркивая заботу о безопасности. Ее центральное расположение, напротив Спальни Султана, подчеркивает ее иерархическое значение.',
+        r4Title: 'Императорская Баня', r4Text: 'Императорская Баня в Гареме дворца Топкапы была не столько частной зоной для мытья, сколько местом политической и церемониальной важности. Документированные источники указывают, что она отражала богатый классический османский стиль, особенно при Мураде III и Валиде Султан. Она располагалась рядом с Баней Валиде Султан и питалась от одной печи, демонстрируя эффективную архитектуру турецких бань. Зона для мытья в *сыджаклык* (горячей комнате) была отделена позолоченной клеткой от попыток убийства, подчеркивая заботу о безопасности. Ее центральное расположение, напротив Спальни Султана, подчеркивает ее иерархическое значение.',
         r5Title: 'Школа Принцев', r5Text: 'Школа Шехзадеган (Школа Принцев) во дворце Топкапы была высокоструктурированным учебным заведением, предназначенным для подготовки членов династии к будущим государственным обязанностям. Принцы получали образование по утвержденной учебной программе, которая включала как традиционные, так и современные знания, такие как арабская грамматика, этика, высшая математика, геометрия и даже западные языки, например, французский. После провозглашения Второй Конституционной эры и, в частности, после свержения Абдул-Хамида II, школа была закрыта. Принцы впоследствии стали обучаться в государственных школах или отправляться в европейские учебные заведения, такие как Трезианум в Вене, что ознаменовало решительные шаги империи к модернизации и стандартизации образования своих королевских членов.',
         r6Title: 'Клетка (Кафес)', r6Text: 'Система Кафес, введенная во время правления Ахмеда I (1603) в соответствии с принципом *Экмерийет и Эршедийет* (старшинство и здравомыслие), была призвана положить конец многовековому братоубийству. Принцы были изолированы в "Шимширлик Кафеси" во дворе четвертого двора дворца. Эта структура представляла собой фактически крепость, охраняемую евнухами, где принцы жили в роскоши, но были отрезаны от внешнего мира. Хотя система защищала их жизни, она запрещала им иметь детей и часто приводила к тому, что изолированные принцы, такие как Осман III (51 год изоляции), восходили на трон, будучи психически нестабильными или неопытными, что создавало новые проблемы для Османского государства.',
-        r7Title: 'Священная Мантия (Хырка-и Саадет)', r7Text: 'Согласно статье, Хырка-и Саадет (Священная Мантия) является высокочтимой реликвией, принадлежавшей Пророку Мухаммеду, и занимает выдающееся место среди Священных Реликвий во дворце Топкапы. Османы рассматривали такие реликвии как средство благословения, исцеления и проявления глубокого уважения к наследию Пророка. Подтверждено, что Священная Мантия была перенесена Сулейманом Великолепным во время Родосской кампании в 1522 году, перевозилась в золотой клетке, украшенной драгоценными камнями. Султаны брали драгоценный ларец с собой в походы, веря, что это обеспечит победу. Во время правления Ахмеда I к Мантии относились с большим почтением; Султан лично омывал ее в священные дни для благословения, раздавая очищенную воду государственным чиновникам.',
+        r7Title: 'Священная Мантия (Хырка-и Саадет)', r7Text: 'Согласно статье, Хырка-и Саадет (Священная Мантия) является высокочтимой реликвией, принадлежавшей Пророку Мухаммеду, и занимает выдающееся место среди Священных Реликвий во дворце Топкапы. Османы рассматривали такие реликвии как средство благословения, исцеления и проявления глубокого уважения к наслегию Пророка. Подтверждено, что Священная Мантия была перенесена Сулейманом Великолепным во время Родосской кампании в 1522 году, перевозилась в золотой клетке, украшенной драгоценными камнями. Султаны брали драгоценный ларец с собой в походы, веря, что это обеспечит победу. Во время правления Ахмеда I к Мантии относились с большим почтением; Султан лично омывал ее в священные дни для благословения, раздавая очищенную воду государственным чиновникам.',
         backBtn: '← Назад в Меню Гарема, Садов, Экспонатов',
-        audioTitle: 'Прослушать рассказ о разделе' // YENİ: Ses başlığı
+        audioTitle: 'Прослушать рассказ о разделе'
     },
     'ar': {
         titleTag: 'أقسام الحريم | قصر طوب قابي',
         pageTitle: 'أقسام حريم قصر طوب قابي',
         toc1: 'العرش الذهبي', toc2: 'فناء الجواري', toc3: 'جناح الوالدة السلطان', toc4: 'الحمام السلطاني', toc5: 'مدرسة الأمراء', toc6: 'القفص (كافيس)', toc7: 'البردة الشريفة (خرقة السعادة)',
         r1Title: 'العرش الذهبي', r1Text: 'العرش الذهبي (بايرام تاهتي) كان بمثابة رمز مركزي للقوة العثمانية خلال الاحتفالات الرسمية، خاصة في الأعياد الدينية، حيث كان السلطان يستقبل التهاني. هذه القطعة الرائعة لها إطار خشبي مغطى بالكامل بـ 250 كيلوغرامًا من صفائح الذهب الخالص ومزينة بـ 954 حجر زركون وأحجار كريمة أخرى، مما يعكس القوة المطلقة وثروة الإمبراطورية بمهارة فنية راقية.',
-        r2Title: 'فناء الجواري', r2Text: 'فناء الجواري هو الفناء المركزي في الحريم، الذي يضم أكبر عدد من السكان وتحيط به مهاجع النساء ذوات الرتب الأدنى (الجواري والمبتدئات). كانت هذه المنطقة هي الشريان الرئيسي حيث كانت تعيش الخادمات، ويتلقين تعليمًا صارمًا، ويؤدين واجباتهن. يضم المجمع حمام الجواري ومستشفى الجواري، مما يؤكد وظيفته كمركز للخدمة والحياة اليومية داخل عالم الحريم المعزول.',
+        r2Title: 'فناء الجواري', r2Text: 'فناء الجواري هو الفناء المركزي في الحريم، الذي يضم أكبر عدد من السكان وتحيط به مهاجع النساء ذوات الرتب الأدنى (الجواري والمبتدئات). هذه المنطقة هي الشريان الرئيسي حيث كانت تعيش الخادمات، ويتلقين تعليمًا صارمًا، ويؤدين واجباتهن. يضم المجمع حمام الجواري ومستشفى الجواري، مما يؤكد وظيفته كمركز للخدمة والحياة اليومية داخل عالم الحريم المعزول.',
         r3Title: 'جناح الوالدة السلطان', r3Text: 'يمثل جناح الوالدة السلطان الجزء الأكثر أهمية واتساعًا في حريم قصر طوب قابي، حيث يعمل كمركز سكني وإداري لوالدة السلطان، وهي أقوى شخصية نسائية في الإمبراطورية. امتدت سلطتها لتشمل التعيينات والتأثير على السلطان. عكس الفخامة المعمارية التي لا مثيل لها للجناح، والتي تتميز بأكثر البلاطات تفصيلاً والتطعيمات بالصدف، المكانة العليا للوالدة السلطان. لقد كان مركزًا حاسمًا حيث تم تنسيق السلطة والسياسة الكامنة وراء الكواليس في الإمبراطورية العثمانية.',
-        r4Title: 'الحمام السلطاني (Hünkar Hamamı)', r4Text: 'كان الحمام السلطاني داخل جناح الحريم بقصر طوب قابي أقل كمنطقة استحمام خاصة وأكثر كمكان ذي أهمية سياسية واحتفالية. تشير المصادر الموثقة إلى أنه عكس النمط العثماني الكلاسيكي الغني، خاصة في عهد مراد الثالث والوالدة السلاطين. كان يقع بجوار حمام الوالدة السلطان ويتغذى من فرن تدفئة واحد، مما يدل على كفاءة العمارة التركية للحمامات. تم فصل منطقة الاستحمام في *السجقليك* (الغرفة الساخنة) بقفص مذهب للحماية من محاولات الاغتيال، مما يسلط الضوء على المخاوف الأمنية. يؤكد موقعه المركزي، مقابل غرفة نوم السلطان، على أهميته الهرمية.',
+        r4Title: 'الحمام السلطاني', r4Text: 'كان الحمام السلطاني داخل جناح الحريم بقصر طوب قابي أقل كمنطقة استحمام خاصة وأكثر كمكان ذي أهمية سياسية واحتفالية. تشير المصادر الموثقة إلى أنه عكس النمط العثماني الكلاسيكي الغني، خاصة في عهد مراد الثالث والوالدة السلاطين. كان يقع بجوار حمام الوالدة السلطان ويتغذى من فرن تدفئة واحد، مما يدل على كفاءة العمارة التركية للحمامات. تم فصل منطقة الاستحمام في *السجقليك* (الغرفة الساخنة) بقفص مذهب للحماية من محاولات الاغتيال، مما يسلط الضوء على المخاوف الأمنية. يؤكد موقعه المركزي، مقابل غرفة نوم السلطان، على أهميته الهرمية.',
         r5Title: 'مدرسة الأمراء', r5Text: 'كانت مدرسة الشهزادكان (مدرسة الأمراء) في قصر طوب قابي مؤسسة تعليمية عالية التنظيم مصممة لإعداد أفراد الأسرة الحاكمة لمهام الدولة المستقبلية. تلقى الأمراء تعليمهم من خلال منهج متدرج شمل المعرفة التقليدية والحديثة، مثل قواعد اللغة العربية والأخلاق والرياضيات المتقدمة والهندسة وحتى اللغات الغربية مثل الفرنسية. بعد إعلان العصر الدستوري الثاني، وخاصة بعد خلع عبد الحميد الثاني، أغلقت المدرسة. التحق الأمراء بعد ذلك بالمدارس العامة أو أُرسلوا إلى مؤسسات أوروبية مثل تريزيانوم في فيينا، مما يمثل خطوات الإمبراطورية الحاسمة نحو تحديث وتوحيد تعليم أفرادها الملكيين.',
         r6Title: 'القفص (كافيس)', r6Text: 'تم إدخال نظام القفص، الذي تم تنفيذه في عهد أحمد الأول (1603) بعد مبدأ *الأكبارية والأرشدية* (الأقدمية وسلامة العقل)، لإنهاء قرون من قتل الإخوة. تم عزل الأمراء في "قفص شيمشيرليك" داخل الفناء الرابع للقصر. كان هذا الهيكل عبارة عن قلعة افتراضية، يحرسه الخصيان، حيث عاش الأمراء في ترف ولكنهم كانوا معزولين عن العالم الخارجي. بينما حمى النظام حياتهم، فقد منعهم من إنجاب الأطفال وغالبًا ما أدى إلى تولي أمراء معزولين، مثل عثمان الثالث (51 عامًا من العزلة)، العرش وهم غير مستقرين عقليًا أو غير ذوي خبرة، مما شكل مشاكل جديدة للدولة العثمانية.',
         r7Title: 'البردة الشريفة (خرقة السعادة)', r7Text: 'وفقًا للمقال، فإن البردة الشريفة (خرقة السعادة) هي إحدى الآثار النبوية المبجلة التي تعود إلى النبي محمد وتحتل مكانة بارزة بين الآثار المقدسة في قصر طوب قابي. اعتبر العثمانيون مثل هذه الآثار وسيلة للبركة والشفاء وإظهار الاحترام العميق لإرث النبي. تم التأكيد على أن البردة الشريفة حملها سليمان القانوني خلال حملة رودس عام 1522، ونُقلت في قفص ذهبي مزين بالجواهر. كان السلاطين يأخذون الصندوق الثمين معهم في الحملات، معتقدين أنه سيضمن النصر. في عهد أحمد الأول، تم التعامل مع البردة بتبجيل كبير؛ حيث قام السلطان بغسلها شخصيًا في الأيام المقدسة للحصول على البركة، موزعًا الماء المطهر على مسؤولي الدولة.',
         backBtn: '← العودة إلى قائمة الحريم والحدائق والتحف',
-        audioTitle: 'استمع إلى سرد القسم' // YENİ: Ses başlığı
+        audioTitle: 'استمع إلى سرد القسم'
     }
 };
 
@@ -437,17 +437,20 @@ function updateContent(lang) {
     const t = translations[lang];
     if (!t) return;
 
+    // Sayfa Dili Ayarlama
+    document.documentElement.lang = lang; // HTML etiketinin dilini ayarla
+
     document.getElementById('title-tag').innerText = t.titleTag;
     document.getElementById('page-title').innerText = t.pageTitle;
     document.getElementById('back-btn').innerText = t.backBtn;
 
-    // YENİ: Ses Başlıklarını Güncelle
+    // Ses Başlıklarını Güncelle
     const audioTitles = document.querySelectorAll('[id$="-audio-title"]');
     audioTitles.forEach(element => {
         element.innerText = t.audioTitle;
     });
 
-    // YENİ: Ses Dosyası Kaynağını (src) Dile Göre Güncelleme (Çoklu Dil Desteği)
+    // Ses Dosyası Kaynağını (src) Dile Göre Güncelleme
     const audioElements = document.querySelectorAll('audio[id$="-audio"]');
     audioElements.forEach(audioElement => {
         const sectionId = audioElement.id.replace('-audio', ''); // r1, r2, ...
@@ -466,7 +469,6 @@ function updateContent(lang) {
         }
 
         // Yeni src adresini oluştur: audio/[lang]/[baseFileName].mp3
-        // Örnek: audio/en/harem_altin_taht.mp3
         audioElement.src = `audio/${lang}/${baseFileName}.mp3`;
     });
 
